@@ -1,0 +1,27 @@
+.tutorialSection{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.tutorialBtn{
+	background:transparent;
+	border:1px solid gray;
+	color:gray;
+	padding:20%;
+	font-size:120%;
+	outline:none;
+	transition:1s;
+}
+
+.tutorialBtn:hover{
+	background:gray;
+	border:white;
+	color:white;
+}
+
+.content{
+	position:relative;
+}
+	
