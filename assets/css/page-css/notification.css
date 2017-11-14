@@ -1,14 +1,32 @@
 td:first-child{
-	
-	
+	padding-left:5%;
 	width:90%;
+	
 }
 td:second-child{
 	width:10%;
 }
+
+td{
+	border-bottom:1px solid lightgray;
+	padding-bottom:3%;
+	padding-top:3%;
+}
+
+
 .notificationTable{
 	width:100%;
+
 }
 tr{
 	height:50px;
+}
+
+.deleteBtn{
+	background:transparent;
+	border:none;
+	outline:none;
+}
+.deleteBtn:hover{
+	color:red;
 }
