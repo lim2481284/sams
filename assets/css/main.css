@@ -1,3 +1,13 @@
+
+/* Custom style for template */
+
+.sidebar-wrapper{
+	overflow:hidden !important;
+	background :#CB4335;
+}
+.sidebar{
+	overflow:hidden !important;
+}
 .logo{
 	text-align:center;
 }

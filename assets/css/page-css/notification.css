@@ -1,0 +1,14 @@
+td:first-child{
+	
+	
+	width:90%;
+}
+td:second-child{
+	width:10%;
+}
+.notificationTable{
+	width:100%;
+}
+tr{
+	height:50px;
+}

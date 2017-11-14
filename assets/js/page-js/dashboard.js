@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 	},{
 		type: 'info',
-		timer: 4000
+		timer: 10000
 	});
 
 });
