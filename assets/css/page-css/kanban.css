@@ -6,4 +6,32 @@
 
 .jqx-widget{
 	width:100% !important;
+	
+}
+
+.jqx-kanban-item
+{
+	box-shadow:none !important;
+	border:none !important;
+	margin:0 !important;
+	padding:10% !important;
+	border-radius:0 !important;
+	height:150px !important;
+	border-bottom:1px solid #ECF0F1 !important;
+}
+.jqx-kanban-item-avatar-image{
+	display:none;
+}
+
+.jqx-kanban-item-avatar{
+	display:none;
+	
+}
+.jqx-kanban-item-footer{
+	display:none;
+}
+
+.jqx-kanban-column-container{
+	border:1px solid #ECF0F1;
+	margin:0 !important;
 }

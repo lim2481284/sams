@@ -1,3 +1,25 @@
+//Script for scrollbar 
+(function() {
+    "use strict";
+
+    // custom scrollbar
+
+    $(".jqx-kanban-column-container").niceScroll({styler:"fb",cursorcolor:"#68ae00", cursorwidth: '6', cursorborderradius: '10px', background: '#FFFFFF', spacebarenabled:false, cursorborder: '0',  zindex: '1000'});
+
+    $(".scrollbar1").niceScroll({styler:"fb",cursorcolor:"#68ae00", cursorwidth: '6', cursorborderradius: '0',autohidemode: 'false', background: '#FFFFFF', spacebarenabled:false, cursorborder: '0'});
+
+	
+	
+    $(".scrollbar1").getNiceScroll();
+    if ($('body').hasClass('scrollbar1-collapsed')) {
+        $(".scrollbar1").getNiceScroll().hide();
+    }
+
+})(jQuery);
+
+             
+
+
 $(document).ready(function () {
             var fields = [
                      { name: "id", type: "string" },
@@ -10,10 +32,10 @@ $(document).ready(function () {
             var source =
              {
                  localData: [
-                          { id: "1161", state: "new", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0", resourceId: 3 },
-                          { id: "1645", state: "work", label: "Change Billing Address", tags: "billing", hex: "#f19b60", resourceId: 1 },
-                          { id: "9213", state: "new", label: "One item added to the cart", tags: "cart", hex: "#5dc3f0", resourceId: 3 },
-                          { id: "6546", state: "done", label: "Edit Item Price", tags: "price, edit", hex: "#5dc3f0", resourceId: 4 },
+                          { id: "1161", state: "new", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0"},
+                          { id: "1645", state: "work", label: "Change Billing Address", tags: "billing", hex: "#f19b60" },
+                          { id: "9213", state: "new", label: "One item added to the cart", tags: "cart", hex: "#5dc3f0" },
+                          { id: "6546", state: "done", label: "Edit Item Price", tags: "price, edit", hex: "#5dc3f0" },
                           { id: "9034", state: "new", label: "Login 404 issue", tags: "issue, login", hex: "#6bbd49" }
                  ],
                  dataType: "array",

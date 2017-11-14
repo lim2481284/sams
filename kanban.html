@@ -64,6 +64,7 @@
     <script type="text/javascript" src="https://www.jqwidgets.com/jquery-widgets-documentation/jqwidgets/jqxsortable.js"></script>
     <script type="text/javascript" src="https://www.jqwidgets.com/jquery-widgets-documentation/jqwidgets/jqxkanban.js"></script>
     <script type="text/javascript" src="https://www.jqwidgets.com/jquery-widgets-documentation/jqwidgets/jqxdata.js"></script>	
+	<script src="assets/js/jquery.nicescroll.js"></script>	
 	<script src="assets/js/page-js/kanban.js"></script>
 
 </html>
