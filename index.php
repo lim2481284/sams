@@ -1,3 +1,12 @@
+<?php 
+	
+	include("assets/php/mysql_connect.inc.php"); 	
+	include("assets/php/user_function.php"); 
+?>
+
+
+<!DOCTYPE html>
+
 <html>
 	<head>	
 
@@ -13,7 +22,7 @@
 	 
 	<body>	
 		<div id="login-button">
-		  <img src="assets/img/login-icon.png">
+		  <img  class='filterWhite' src="assets/img/login-icon.png">
 		  </img> 
 		</div>
 		<div id="container">
@@ -22,14 +31,10 @@
 			<img src="circle_close_delete.png"></img>
 		  </span>
 
-		  <form>
-			<input type="student_ID" name="ID" placeholder="Username">
-			<input type="password" name="pass" placeholder="Password">
-			<a href="dashboard.html">Log in</a>
-			<div id="remember-container">
-			  <input type="checkbox" id="checkbox-2-1" class="checkbox" checked="checked"/>
-			  <span id="remember">Remember me</span>
-			</div>
+		  <form action ="#" method = "post">
+			<input type="student_ID" name="username" placeholder="Username">
+			<input type="password" name="password" placeholder="Password">
+			<button name='login'> Log in </button>
 		</form>
 		</div>
 	</body>

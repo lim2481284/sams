@@ -1,3 +1,9 @@
+.filterWhite{
+	filter:brightness(500%);
+}
+
+
+
 html { 
   background: url('../../img/login-bg.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -31,7 +37,7 @@ img{
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background: rgba(3,3,3,.8);
+  background: rgba(255,255,255,.8);
   overflow: hidden;
   opacity: 0.8;
   box-shadow: 10px 10px 30px #000;}
@@ -93,7 +99,7 @@ h1{
 }
 
 /* Inputs */
-a,
+button,
 input{
   font-family: 'Open Sans Condensed', sans-serif;
   text-decoration: none;
@@ -130,14 +136,14 @@ input:focus{
    color: #333;  }
 
 /* Link */
-a{
+button{
   font-family: 'Open Sans Condensed', sans-serif;
   text-align: center;
   padding: 4px 8px;
   background: rgba(107,255,3,0.3);
 }
 
-a:hover{
+button:hover{
   opacity: 0.7;
 }
 

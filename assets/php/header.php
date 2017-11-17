@@ -22,7 +22,7 @@
 
 			<ul class="nav navbar-nav navbar-right">							
 				<li>
-					<a href="#">
+					<a href="assets/php/logout.php">
 						<p>Log out</p>
 					</a>
 				</li>

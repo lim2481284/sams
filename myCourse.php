@@ -1,3 +1,10 @@
+<?php 
+	
+	include("assets/php/mysql_connect.inc.php"); 	
+?>
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -21,6 +28,7 @@
 		<link href="assets/css/animate.min.css" rel="stylesheet"/>		
 		<link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
 		<link href="assets/css/page-css/myCourse.css" rel="stylesheet"/>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.css" rel="stylesheet"/>
 		<link rel="stylesheet" type="text/css" href="assets/css/responsive/myCourse.css" media="screen and (max-width : 768px)">
 
 	</head>
@@ -44,51 +52,9 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="content all-icons">
-										<div class="row">
-										
-										  <a href='courseInfo.html'>
-										  <div class="font-icon-list col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-											<div class="font-icon-detail"><i class="pe-7s-note2"></i>
-											  <input type="text" value="CSNB414">
-											  <label class='courseText'>Data computer security</label>
-											</div>
-										  </div>
-										  </a>
-										  
-										  <div class="font-icon-list col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-											<div class="font-icon-detail"><i class="pe-7s-note2"></i>
-											  <input type="text" value="CSNB414">
-											  <label class='courseText'>Data computer security</label>
-											</div>
-										  </div>
-										  <div class="font-icon-list col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-											<div class="font-icon-detail"><i class="pe-7s-note2"></i>
-											  <input type="text" value="CSNB414">
-											  <label class='courseText'>Data computer security</label>
-											</div>
-										  </div>
-										 
-										  <div class="font-icon-list col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-											<div class="font-icon-detail"><i class="pe-7s-note2"></i>
-											  <input type="text" value="CSNB414">
-											  <label class='courseText'>Data computer security</label>
-											</div>
-										  </div>
-										   <div class="font-icon-list col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-											<div class="font-icon-detail"><i class="pe-7s-note2"></i>
-											  <input type="text" value="CSNB414">
-											  <label class='courseText'>Data computer security</label>
-											</div>
-										  </div>
-										   <div class="font-icon-list col-lg-3 col-md-3 col-sm-4 col-xs-6 col-xs-6">
-											<div class="font-icon-detail"><i class="pe-7s-note2"></i>
-											  <input type="text" value="CSNB414">
-											  <label class='courseText'>Data computer security</label>
-											</div>
-										  </div>
+										<button class='btn btn-default createCourse'>Create  </button>
+										<div class="row courseListSection">
 										</div>
-
-
 									</div>
 								</div>
 							</div>
@@ -112,8 +78,17 @@
 	<script src="assets/js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 	<script src="assets/js/main.js"></script>
 	
+	
 	<!--   JS for this  page   -->	
 	<script src="assets/js/bootstrap-notify.js"></script>	
-	<script src="assets/js/page-js/dashboard.js"></script>
+	<script src="assets/js/page-js/myCourse.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+	
+	<!--   Grab course data   -->	
+	<?php 
+		
+		include("assets/php/course_function.php"); 	
+	?>
 
+	
 </html>

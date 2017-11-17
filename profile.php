@@ -1,3 +1,8 @@
+<?php 
+	
+	include("assets/php/mysql_connect.inc.php"); 	
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -46,24 +51,24 @@
 										<h4 class="title">Edit Profile</h4>
 									</div>
 									<div class="content">
-										<form>
+										<form action ='#' method = "post">
 											<div class="row">
 												<div class="col-md-5">
 													<div class="form-group">
-														<label>Company (disabled)</label>
-														<input type="text" class="form-control" disabled placeholder="Company" value="Creative Code Inc.">
+														<label>Student ID</label>
+														<input type="text" class="form-control" disabled placeholder="Company" value="SW092312">
 													</div>
 												</div>
 												<div class="col-md-3">
 													<div class="form-group">
 														<label>Username</label>
-														<input type="text" class="form-control" placeholder="Username" value="michael23">
+														<input type="text" class="form-control username" name=username placeholder="Username" value="" disabled>
 													</div>
 												</div>
 												<div class="col-md-4">
 													<div class="form-group">
 														<label for="exampleInputEmail1">Email address</label>
-														<input type="email" class="form-control" placeholder="Email">
+														<input name='email' type="email" class="form-control email" placeholder="Email">
 													</div>
 												</div>
 											</div>
@@ -71,14 +76,14 @@
 											<div class="row">
 												<div class="col-md-6">
 													<div class="form-group">
-														<label>First Name</label>
-														<input type="text" class="form-control" placeholder="Company" value="Mike">
+														<label>Gender </label>
+														<input type="text" class="form-control gender" placeholder="" value="" disabled>
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="form-group">
-														<label>Last Name</label>
-														<input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+														<label>Contact number</label>
+														<input name='contact' type="text" class="form-control contact" placeholder="Last Name" value="">
 													</div>
 												</div>
 											</div>
@@ -87,28 +92,7 @@
 												<div class="col-md-12">
 													<div class="form-group">
 														<label>Address</label>
-														<input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-													</div>
-												</div>
-											</div>
-
-											<div class="row">
-												<div class="col-md-4">
-													<div class="form-group">
-														<label>City</label>
-														<input type="text" class="form-control" placeholder="City" value="Mike">
-													</div>
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
-														<label>Country</label>
-														<input type="text" class="form-control" placeholder="Country" value="Andrew">
-													</div>
-												</div>
-												<div class="col-md-4">
-													<div class="form-group">
-														<label>Postal Code</label>
-														<input type="number" class="form-control" placeholder="ZIP Code">
+														<input name ='address' type="text" class="form-control address" placeholder="Home Address" value="">
 													</div>
 												</div>
 											</div>
@@ -117,12 +101,12 @@
 												<div class="col-md-12">
 													<div class="form-group">
 														<label>About Me</label>
-														<textarea rows="5" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+														<textarea name='about' rows="5" class="form-control about" placeholder="Here can be your description" value="Mike"></textarea>
 													</div>
 												</div>
 											</div>
 
-											<button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+											<button type="submit" class="btn btn-info btn-fill pull-right" name='update'>Update Profile</button>
 											<div class="clearfix"></div>
 										</form>
 									</div>
@@ -137,24 +121,17 @@
 										<div class="author">
 											 <a href="#">
 											<img class="avatar border-gray" src="assets/img/profile.png" alt="..."/>
-
-											  <h4 class="title">Mike Andrew<br />
-												 <small>michael24</small>
-											  </h4>
+																							
 											</a>
+											 <h4 class="usernameTitle"><br />
+													 
+												  </h4>
 										</div>
-										<p class="description text-center"> "Lamborghini Mercy <br>
-															Your chick she so thirsty <br>
-															I'm in that two seat Lambo"
+										<p class="description text-center about">
 										</p>
 									</div>
 									<hr>
-									<div class="text-center">
-										<button href="#" class="btn btn-simple"><i class="fa fa-facebook-square"></i></button>
-										<button href="#" class="btn btn-simple"><i class="fa fa-twitter"></i></button>
-										<button href="#" class="btn btn-simple"><i class="fa fa-google-plus-square"></i></button>
 
-									</div>
 								</div>
 							</div>
 
@@ -178,5 +155,11 @@
 	<!--   JS for this  page   -->	
 	<script src="assets/js/bootstrap-notify.js"></script>	
 	<script src="assets/js/page-js/dashboard.js"></script>
+	
+	<!--   Grab user data   -->	
+	<?php 
+		
+		include("assets/php/profile_function.php"); 	
+	?>
 
 </html>

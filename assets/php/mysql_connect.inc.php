@@ -1,0 +1,46 @@
+
+
+<?php
+
+
+	//error_reporting(0);
+
+
+	$DB_HOST	="localhost";
+	$DB_LOGIN	="root";
+	$DB_PASSWORD="";
+	$DB_NAME	="sams";
+
+
+	$conn=mysqli_connect($DB_HOST,$DB_LOGIN,$DB_PASSWORD);
+
+	if(!$conn)
+	{
+		die('Database connection error '.mysqli_error($conn));
+	}
+
+	$db_selected=mysqli_select_db($conn,$DB_NAME);
+	if(!$db_selected)
+	{
+		die('DB error:' .$DB_NAME.')'.mysqli_error($conn));
+	}
+	
+	session_start();
+	
+	
+	
+	//global variable
+	if(isset($_SESSION['username']))
+	{	
+		$USERID= $_SESSION['userId'];
+		$ROLE = $_SESSION['role'];
+		echo $ROLE;
+		$USERNAME= $_SESSION['username'];
+		$PASS = $_SESSION['pass'];
+	}
+	
+	
+	  
+
+	
+ ?>
