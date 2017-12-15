@@ -3,7 +3,8 @@
 <?php
 
 
-	//error_reporting(0);
+	//Comment it to show the php error 
+	error_reporting(0);
 
 
 	$DB_HOST	="localhost";
@@ -32,15 +33,33 @@
 	//global variable
 	if(isset($_SESSION['username']))
 	{	
-		$USERID= $_SESSION['userId'];
-		$ROLE = $_SESSION['role'];
-		echo $ROLE;
-		$USERNAME= $_SESSION['username'];
-		$PASS = $_SESSION['pass'];
+		$USERID= $_SESSION['userID'];
+		$ROLE = $_SESSION['role'];		
+		$USERNAME= $_SESSION['username'];		
+		$PROFILE= $_SESSION['profile'];
 	}
-	
-	
-	  
+		
+	if(isset($_SESSION['profile']))
+	{
+		if($_SESSION['profile']==0){
+
+			$base = basename($_SERVER['REQUEST_URI']);
+			if($base !='profile.php')
+			{
+				echo "					
+					<script>
+						swal({
+						  title: 'Please setup your profile first ',						  
+						  type: 'info',
+						  showCancelButton: false
+						}).then((result) => {
+						  location.href='profile.php';
+						})
+					</script>
+				";	
+			}
+		}
+	}
 
 	
  ?>

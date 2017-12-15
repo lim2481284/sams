@@ -1,17 +1,38 @@
-$('#login-button').click(function(){
-  $('#login-button').fadeOut("slow",function(){
-    $("#container").fadeIn();
-    TweenMax.from("#container", .4, { scale: 0, ease:Sine.easeInOut});
-    TweenMax.to("#container", .4, { scale: 1, ease:Sine.easeInOut});
-  });
+$(".loginRegisterToggle").click(function(){
+	
+	$(".toggleElement").animate({			
+		height: "toggle",
+		opacity:"toggle"
+		
+	},"slow");
 });
 
-$(".close-btn").click(function(){
-  TweenMax.from("#container", .4, { scale: 1, ease:Sine.easeInOut});
-  TweenMax.to("#container", .4, { left:"0px", scale: 0, ease:Sine.easeInOut});
-  $("#container, #forgotten-container").fadeOut(800, function(){
-    $("#login-button").fadeIn(800);
-  });
 
-});
- 
+
+function check()
+{
+	var pass1 = document.getElementById('pass');
+	var pass2 = document.getElementById('confirmpass');
+	if(pass1.value != pass2.value)
+	{
+		alert("Password Not Match");
+		return false;
+	}
+}
+
+function checkPass()
+{
+	var pass1 = document.getElementById('pass');
+	var pass2 = document.getElementById('confirmpass');	
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+	if(pass2.value){
+		if(pass1.value == pass2.value){
+			pass2.style.backgroundColor = goodColor;			
+
+		}else{
+			pass2.style.backgroundColor = badColor;			
+
+		}
+	}
+}

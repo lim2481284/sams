@@ -1,8 +1,3 @@
-<?php 
-	
-	include("assets/php/mysql_connect.inc.php"); 	
-?>
-
 
 
 <!doctype html>
@@ -31,6 +26,7 @@
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.css" rel="stylesheet"/>
 		<link rel="stylesheet" type="text/css" href="assets/css/responsive/myCourse.css" media="screen and (max-width : 768px)">
 
+
 	</head>
 		
 	<body>
@@ -45,8 +41,8 @@
 				<!-- Top menu section  -->
 				<div class='topmenu-section'></div>
 				
-				<!-- Main content section  -->	
-				<div class="content">
+				<!-- Main content for create course section  -->	
+				<div class="content createCourseSection">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-md-12">
@@ -55,6 +51,107 @@
 										<button class='btn btn-default createCourse'>Create  </button>
 										<div class="row courseListSection">
 										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+    
+				</div>
+				
+				<!-- Main content for display course section  -->	
+				<div class="content displayCourseSection">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="content all-icons">
+										<input class='courseID' type='hidden'/>
+										<input class='courseKey' type='hidden'/>
+										<button class='btn btn-default backBtn'>Back  </button>
+										<button class='btn btn-default editCourse'>Edit course  </button>
+										<button class='btn btn-default addAssignment'>Add assignment  </button>
+										<button class='btn btn-default addMaterial'>Add material  </button>
+										<div class='topCourseSection'>	
+											<div class="cardInside">									
+												<div class="content all-icons">								 								 
+													<div class="font-icon-detail infoBox"><i class="pe-7s-note2"></i>
+													  <input type="text" class='infoCourseCode'  value="">
+													  <label class='infoCourseName'></label>
+													  <hr>
+													  <label class='infoCourseDescription'></label>
+													</div>						
+												</div>									
+											</div>																									
+										</div>		
+										<div class='courseMenu'> 
+											<a class='courseMenuList assignmentBtn menuActive' href='#'> Assignment </a> 
+											|
+											<a class='courseMenuList materialBtn' href='#'> Material </a> 											
+										</div>
+										<div class='col-sm-1'></div>
+										<div class='tableSection assignmentSection col-sm-10'>
+											<table class='tableTable courseInfoAssignmentList'>
+												<tr class='t_header'>
+													<th class='t_1'>
+														Assignment Name
+													</th>
+													<th  class='t_2'>
+														Deadline 
+													</th>
+													<th  class='t_3'>
+														Action 
+													</th>
+												</tr>
+												<tr>					
+													<td class='t_1'>
+														<label class='courseLabelTitle'>Lab task 1</label>
+													</td>
+													<td class='t_2'>													
+															1 Jun 2018 
+													</td>								
+													<td class='t_3'>
+														<button class='customBtn'> Kanban  </button>
+														<button class='customBtn'> Verify   </button>
+														<button class='customBtn'> Delete   </button>
+														<button class='customBtn'> Edit   </button>
+													</td>
+												</tr>
+
+											</table>
+											<br><br><br><br><br><br><br><br><br>
+										</div>	
+										<div class='tableSection materialSection col-sm-10'>
+											<table class='tableTable courseInfoAssignmentList'>
+												<tr class='t_header'>
+													<th class='t_1'>
+														Material Name
+													</th>
+													<th  class='t_2'>
+														 
+													</th>
+													<th  class='t_3'>
+														Action 
+													</th>
+												</tr>
+												<tr>					
+													<td class='t_1'>
+														<label class='courseLabelTitle'>Lab task 1</label>
+													</td>
+													<td class='t_2'>													
+															
+													</td>								
+													<td class='t_3'>
+														<a href='kanban.html'> <button class='customBtn'> Delete  </button></a>
+														<button class='customBtn'> Edit   </button>
+													</td>
+												</tr>
+
+											</table>
+											<br><br><br><br><br><br><br><br><br>
+										</div>											
+										<div class='col-sm-1'></div>
 									</div>
 								</div>
 							</div>
@@ -86,7 +183,7 @@
 	
 	<!--   Grab course data   -->	
 	<?php 
-		
+		include("assets/php/mysql_connect.inc.php"); 	
 		include("assets/php/course_function.php"); 	
 	?>
 

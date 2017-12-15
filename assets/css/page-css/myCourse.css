@@ -4,6 +4,187 @@
 	width:80%;
 	
 }
+.createCourseSection,
+.displayCourseSection{
+	display:none;
+}
+
+.materialSection{
+	display:none;
+}
+
+/* Box styling */
+
+@media (min-width: 992px){
+    .typo-line{
+        padding-left: 140px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .typo-line .category{
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0px;
+        position: absolute;
+    }
+}
+
+.all-icons [class*="pe-"]{
+    font-size: 40px;
+}
+.all-icons input{
+    border: 0;
+}
+.all-icons .font-icon-detail{
+    text-align: center;
+    padding: 45px 0px 30px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    margin: 15px 0;
+}
+.all-icons .font-icon-detail input{
+    margin: 25px auto 0;
+    width: 100%;
+    text-align: center;
+    display: block;
+    color: black;
+    font-size: 13px;
+	font-weight:bold;
+}
+
+#map{
+    position:relative;
+    width:100%;
+    height: calc(100% - 60px);
+}
+
+.places-buttons .btn{
+    margin-bottom: 30px
+}
+.sidebar .nav > li.active-pro{
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+.sidebar .nav > li.active-pro a{
+    background: rgba(255, 255, 255, 0.14);
+    opacity: 1;
+    color: #FFFFFF;
+}
+
+.table-upgrade td:nth-child(2),
+.table-upgrade td:nth-child(3){
+    text-align: center;
+}
+.infoBox {
+    padding-top: 85px !important;
+    padding-bottom: 85px !important;
+}
+@media all and (max-width: 991px)  {
+    .sidebar .nav > li.active-pro{
+        position: initial;
+      }
+}
+
+
+.courseText{
+	color:gray;
+	font-size:80% !important;
+	width:80%;
+	
+}
+
+.card{
+	
+	 display: flow-root;
+}
+
+.all-icons .font-icon-detail{	
+	background:white;
+}
+.row{
+	position: relative;
+}
+.font-icon-list{
+
+}
+.topCourseSection{
+	width: 30%;
+    margin: auto;
+}
+.courseMenu{
+	text-align:center;
+}
+.menuActive{
+	font-weight:800;
+}
+.courseMenuList{
+	padding:3%;
+}
+
+
+
+/*Table styling */
+.t_1{
+	width:50%;
+}
+
+.t_2{
+	width:20%;
+}
+.t_3 button{
+	width:40%;
+}
+.t_3{
+	width:30%;
+	text-align:center;
+}
+.t_header{
+	border-bottom:2px solid black;
+}
+
+.m_1{
+	width:70%;
+}
+
+.m_2{
+	width:30%;
+	text-align:center;
+}
+
+
+td{
+	border-bottom:1px solid lightgray;
+	padding-bottom:3%;
+	padding-top:3%;
+}
+
+
+.tableTable{
+	width:100%;
+	margin-top:5%;
+
+}
+tr{
+	height:50px;
+}
+
+.customBtn{
+	background:transparent;
+	border:1px solid gray;
+	outline:none;
+	padding:3% 8% 3% 8%;
+}
+.customBtn:hover{
+	color:red;
+	border:1px solid red;
+}
+
+.courseListRow{
+	padding-top:1%;
+	padding-bottom:1%;
+}
 
 
 /* Box styling */

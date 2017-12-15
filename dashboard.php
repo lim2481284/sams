@@ -60,5 +60,13 @@
 	<!--   JS for this  page   -->	
 	<script src="assets/js/bootstrap-notify.js"></script>	
 	<script src="assets/js/page-js/dashboard.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+	
+	<!--php connection-->
+	<?php 		
+		include("assets/php/mysql_connect.inc.php"); 			
+	?>	
+	
+	
 
 </html>

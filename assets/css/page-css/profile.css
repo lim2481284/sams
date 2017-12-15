@@ -1,3 +1,63 @@
 .card-user .avatar.border-gray{
 	border:2px solid lightgray !important;	
 }
+.changePasswordBtn{
+	margin-right:2%;	
+}
+
+.btn-default{
+	border:1px solid gray;
+}
+
+
+.userDescription{
+	font-size:100%;
+	color:gray;
+}
+#uploadedImage{
+	
+	width:150px;
+	height:150px;
+}
+
+
+
+.file-input-wrapper {
+	margin:auto;
+	width: 200px;
+	height: 40px;
+	overflow: hidden;
+	position: relative;
+}
+.file-input-wrapper > input[type="file"] {
+	font-size: 200px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+
+}
+.file-input-wrapper > .btn-file-input {
+	display: inline-block;
+	width: 200px;
+	height: 40px;
+    background: #3DBAD9;
+    color: white;
+    outline: none;
+    border: none;	
+}
+
+.profileFileUpload{
+	cursor:pointer;
+}
+
+#uploadedImage{
+	max-height:400px;
+	max-width:400px;	
+}
+
+.imageSection{
+	margin-bottom:10%;
+	margin-top:10%;
+	text-align:center;
+}

@@ -5,7 +5,7 @@
 			<a href="http://www.creative-tim.com" class="simple-text">
 				SAMS U10
 			</a>
-			<img src='assets/img/profile.png'/>
+			<img class='menuPicture' src=''/>
 		</div>
 
 		<ul class="nav">
@@ -72,6 +72,17 @@ $(function() {
 <?php
 	session_start();
 	$userRole = $_SESSION['role'];
+	$img_url = $_SESSION['img_url'];
+	
+	// change menu picture 
+	echo "
+		<script>			
+			$('.menuPicture').attr('src','assets/img/profile/$img_url'+'.png');
+		</script>
+	";
+	
+	
+	// change menu based on rule 
 	if($userRole == 1)
 	{
 		echo "
