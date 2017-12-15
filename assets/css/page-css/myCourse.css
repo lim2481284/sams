@@ -122,7 +122,56 @@
 .courseMenuList{
 	padding:3%;
 }
+.leftBtn{
+	float:left;
+	margin-right:5px;
+}
+.fileSection{
+	position:relative;
+	
+}
 
+
+
+.file-input-wrapper {
+	margin:auto;
+	width: 200px;
+	height: 40px;
+	overflow: hidden;
+	position: relative;
+}
+.file-input-wrapper > input[type="file"] {
+	font-size: 200px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+
+}
+.file-input-wrapper > .btn-file-input {
+	display: inline-block;
+	width: 200px;
+	height: 40px;
+    background: #3DBAD9;
+    color: white;
+    outline: none;
+    border: none;	
+}
+
+.profileFileUpload{
+	cursor:pointer;
+}
+
+#uploadedImage{
+	max-height:400px;
+	max-width:400px;	
+}
+
+.imageSection{
+	margin-bottom:10%;
+	margin-top:10%;
+	text-align:center;
+}
 
 
 /*Table styling */

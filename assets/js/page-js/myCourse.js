@@ -1,6 +1,18 @@
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.readAsDataURL(input.files[0]);
+	}
+}		
+
 
 $(document).ready(function(){
 		
+		
+	$(document).on('change','.materialFileUpload',function(){		
+		$("#fileForm").submit();
+	});
+	
 		
 	//On click assignment and material button 
 	//Change the table and hightlight the menu button 

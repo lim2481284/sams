@@ -1,0 +1,41 @@
+html 
+	- height:-webkit-fill-available;
+	- column-count
+
+hashtag
+text-editor 
+working with file directory 
+image slider 
+sweetalert all possible option
+chartjs with legend
+webcam 
+image detection 
+
+
+AR technoglog 
+
+
+
+
+Design 
+	- fitnergist 
+		- fitcmap cardboard 
+		- image uploadaer 
+		- date time selectore 
+		- vertical table 
+		- all card
+		- google map selector 
+
+	- laravel 
+		- auth 
+			- custom register 
+			- custom login 
+			- how to change custom password auth field 
+			- how to check user logged in from api 
+			- how to verify user role from api 
+
+
+	- carye 
+		- all UI 
+
+		- swal : all type of form and response 

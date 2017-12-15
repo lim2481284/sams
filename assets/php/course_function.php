@@ -2,10 +2,41 @@
 
 <?php
 	
-
 		
 		//Edit profile sql 	
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {	
+			
+			if(isset($_POST['file']))				
+			{				
+				$courseID = $_POST['courseID'];
+				$name= basename($_FILES["fileToUpload"]["name"]);				
+				$target_dir = "assets/img/material/";
+				$target_file = $target_dir . $name;							
+				$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));							
+				 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+					 
+					$sql="insert into course_material (`courseID`,`material_link`) values ('$courseID', '$name')";		
+					if(mysqli_query($conn,$sql))
+					{										 
+						echo"
+						<script> 
+							swal({
+							  title: 'Assignment material uploaded',						  
+							  type: 'success',
+							  showCancelButton: false
+							}).then((result) => {
+							   
+							})
+						</script>
+						";
+					}
+				} else {
+					echo "Sorry, there was an error uploading your file.";
+				}
+				
+							
+			}
+			
 			
 			if(isset($_POST['createCourse']))
 			{	
@@ -68,7 +99,7 @@
 		{
 				
 			
-			//Grab profile data sql 
+			//Grab profile data  
 			$courseID = $_GET['courseID'];
 			$sql = "select * from course where courseID = $courseID";
 			$result = mysqli_query($conn,$sql);			
@@ -89,6 +120,38 @@
 						$('.infoCourseDescription').html('$description');	
 						$('.courseID').val('$courseID');
 						$('.courseKey').val('$key');
+					</script>									
+				";
+				
+																					
+				
+			}
+			
+			//Grab mateiral data 
+			$sql = "select * from course_material where courseID = $courseID";
+			$result = mysqli_query($conn,$sql);			
+			while($row = mysqli_fetch_assoc($result))
+			{
+			
+				$link = $row['material_link'];
+				
+				echo "
+					<script>
+						var list = `
+							<tr>					
+								<td class='t_1'>
+									<label class='courseLabelTitle'>$link</label>
+								</td>
+								<td class='t_2'>																							
+								</td>								
+								<td class='t_3'>
+									<a download href='assets/img/material/$link'> <button class='customBtn'> Download  </button></a>
+									<button class='customBtn'>Delete    </button>
+								</td>
+							</tr>
+	  
+						`;				
+						$('.courseMaterialList').append(list);
 					</script>									
 				";
 				

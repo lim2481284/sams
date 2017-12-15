@@ -67,12 +67,23 @@
 							<div class="col-md-12">
 								<div class="card">
 									<div class="content all-icons">
-										<input class='courseID' type='hidden'/>
+										
 										<input class='courseKey' type='hidden'/>
-										<button class='btn btn-default backBtn'>Back  </button>
-										<button class='btn btn-default editCourse'>Edit course  </button>
-										<button class='btn btn-default addAssignment'>Add assignment  </button>
-										<button class='btn btn-default addMaterial'>Add material  </button>
+										<button class='btn btn-default leftBtn backBtn'>Back  </button>
+										<button class='btn btn-default leftBtn editCourse'>Edit course  </button>
+										<button class='btn btn-default leftBtn addAssignment'>Add assignment  </button>	
+										<div class='fileSection leftBtn'>
+											<form id='fileForm' action="#" method="post" enctype="multipart/form-data">
+												<input name='courseID' class='courseID' type='hidden'/>
+												<div class="file-input-wrapper">
+												  <button class='btn btn-default addMaterial'>Add material  </button>
+												  <input type="file" name="fileToUpload"  class='materialFileUpload' onchange="readURL(this);"/>
+												  
+												</div>
+												<input type='hidden' name='file'/>												
+											</form>
+										</div>
+										<br><br><br>
 										<div class='topCourseSection'>	
 											<div class="cardInside">									
 												<div class="content all-icons">								 								 
@@ -95,7 +106,7 @@
 											<table class='tableTable courseInfoAssignmentList'>
 												<tr class='t_header'>
 													<th class='t_1'>
-														Assignment Name
+														Assignment 
 													</th>
 													<th  class='t_2'>
 														Deadline 
@@ -123,7 +134,7 @@
 											<br><br><br><br><br><br><br><br><br>
 										</div>	
 										<div class='tableSection materialSection col-sm-10'>
-											<table class='tableTable courseInfoAssignmentList'>
+											<table class='tableTable courseMaterialList'>
 												<tr class='t_header'>
 													<th class='t_1'>
 														Material Name
@@ -135,19 +146,7 @@
 														Action 
 													</th>
 												</tr>
-												<tr>					
-													<td class='t_1'>
-														<label class='courseLabelTitle'>Lab task 1</label>
-													</td>
-													<td class='t_2'>													
-															
-													</td>								
-													<td class='t_3'>
-														<a href='kanban.html'> <button class='customBtn'> Delete  </button></a>
-														<button class='customBtn'> Edit   </button>
-													</td>
-												</tr>
-
+												
 											</table>
 											<br><br><br><br><br><br><br><br><br>
 										</div>											
