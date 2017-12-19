@@ -92,6 +92,7 @@
 													  <label class='infoCourseName'></label>
 													  <hr>
 													  <label class='infoCourseDescription'></label>
+													  <input name='courseID' class='courseID' type='hidden'/>
 													</div>						
 												</div>									
 											</div>																									
@@ -115,20 +116,7 @@
 														Action 
 													</th>
 												</tr>
-												<tr>					
-													<td class='t_1'>
-														<label class='courseLabelTitle'>Lab task 1</label>
-													</td>
-													<td class='t_2'>													
-															1 Jun 2018 
-													</td>								
-													<td class='t_3'>
-														<button class='customBtn'> Kanban  </button>
-														<button class='customBtn'> Verify   </button>
-														<button class='customBtn'> Delete   </button>
-														<button class='customBtn'> Edit   </button>
-													</td>
-												</tr>
+												
 
 											</table>
 											<br><br><br><br><br><br><br><br><br>

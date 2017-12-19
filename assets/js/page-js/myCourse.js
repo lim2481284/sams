@@ -7,7 +7,111 @@ function readURL(input) {
 
 
 $(document).ready(function(){
+
+	
+	//Edit assignment button function 
+	$('.editAssignmentBtn').click(function(){
+		var title = $(this).parent().parent().find('.assignmentTitle').html();
+		var assignmentDescription = $(this).parent().parent().find('.assignmentDescription').html();
+		var assignmentDeadline = $(this).closest('tr').find('.assignmentDeadline').html();
 		
+		var assignmentID = $('.assignmentID').val();
+		
+		
+		swal({
+		  title: 'Create Folder',			  
+		  allowOutsideClick: false,
+		  showCancelButton: true,
+		   html:`
+		  <form id="myForm" action="#" method="post" >
+			<br>
+			<label class="swal-label">Assignment name  </label>
+			<input id="swal-input-code" name="name" class="swal2-input"  value="`+title+`">
+			<input type="hidden" name="editAssignment" value=""/>
+			<label class="swal-label">Assignment description </label>
+			<input type="hidden" name="courseID" value="`+courseID+`"/>
+			<input type="hidden" name="assignmentID" value="`+assignmentID+`"/>
+			<input name="description" id="swal-input-name" class="swal2-input" value="`+assignmentDescription+`">
+			<label class="swal-label">Deadline </label>
+			<input name="deadline" id="swal-input-key" class="swal2-input" value="`+assignmentDeadline+`">						
+		  </form>`,			  
+		  focusConfirm: false,
+		  preConfirm: function () {
+			return new Promise(function (resolve,reject) {	
+				if(!$('#swal-input-name').val())
+				{							
+					reject('Please fill in all the info');
+				}					  
+				else {
+					resolve([
+					  $('#swal-input-name').val(),
+					  $('#swal-input-code').val(),
+					  $('#swal-input-key').val(),
+					  $('#swal-input-description').val()
+					])					
+				}
+			})
+		  }
+		}).then(function (result) {						
+			  if (result.dismiss === 'cancel') {}
+			  else 
+			  {
+				document.getElementById("myForm").submit();
+			  }
+													
+		}).catch(swal.noop)
+	});
+
+	
+	//Add assignemnt button function 
+	$('.addAssignment').click(function(){
+		
+		
+		var courseID = $('.courseID').val();		
+		swal({
+		  title: 'Create Assignment',			  
+		  allowOutsideClick: false,
+		  showCancelButton: true,
+		  html:`
+		  <form id="myForm" action="#" method="post" >
+			<br>
+			<label class="swal-label">Assignment name  </label>
+			<input id="swal-input-code" name="name" class="swal2-input"  value="">
+			<input type="hidden" name="createAssignment" value=""/>
+			<label class="swal-label">Assignment description </label>
+			<input type="hidden" name="courseID" value="`+courseID+`"/>
+			<input name="description" id="swal-input-name" class="swal2-input" value="">
+			<label class="swal-label">Deadline </label>
+			<input name="deadline" id="swal-input-key" class="swal2-input" value="">						
+		  </form>`,			  
+		  focusConfirm: false,
+		  preConfirm: function () {
+			return new Promise(function (resolve,reject) {	
+				if(!$('#swal-input-name').val())
+				{							
+					reject('Please fill in all the info');
+				}					  
+				else {
+					resolve([
+					  $('#swal-input-name').val(),
+					  $('#swal-input-code').val(),
+					  $('#swal-input-key').val(),
+					  $('#swal-input-description').val()
+					])					
+				}
+			})
+		  }
+		}).then(function (result) {						
+			  if (result.dismiss === 'cancel') {}
+			  else 
+			  {
+				document.getElementById("myForm").submit();
+			  }
+													
+		}).catch(swal.noop)
+	});
+
+
 		
 	$(document).on('change','.materialFileUpload',function(){		
 		$("#fileForm").submit();
