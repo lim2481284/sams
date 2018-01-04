@@ -3,14 +3,14 @@
 <?php
 
 
-	//Comment it to show the php error 
+	//Comment it to show the php error
 	error_reporting(0);
 
 
 	$DB_HOST	="localhost";
 	$DB_LOGIN	="root";
 	$DB_PASSWORD="";
-	$DB_NAME	="sams";
+	$DB_NAME	="sams_carye";
 
 
 	$conn=mysqli_connect($DB_HOST,$DB_LOGIN,$DB_PASSWORD);
@@ -25,41 +25,20 @@
 	{
 		die('DB error:' .$DB_NAME.')'.mysqli_error($conn));
 	}
-	
+
 	session_start();
-	
-	
-	
+
+
+
 	//global variable
 	if(isset($_SESSION['username']))
-	{	
+	{
 		$USERID= $_SESSION['userID'];
-		$ROLE = $_SESSION['role'];		
-		$USERNAME= $_SESSION['username'];		
+		$ROLE = $_SESSION['role'];
+		$USERNAME= $_SESSION['username'];
 		$PROFILE= $_SESSION['profile'];
 	}
-		
-	if(isset($_SESSION['profile']))
-	{
-		if($_SESSION['profile']==0){
 
-			$base = basename($_SERVER['REQUEST_URI']);
-			if($base !='profile.php')
-			{
-				echo "					
-					<script>
-						swal({
-						  title: 'Please setup your profile first ',						  
-						  type: 'info',
-						  showCancelButton: false
-						}).then((result) => {
-						  location.href='profile.php';
-						})
-					</script>
-				";	
-			}
-		}
-	}
 
-	
+
  ?>

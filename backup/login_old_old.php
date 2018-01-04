@@ -21,9 +21,7 @@
   <div class="body"></div>
 		<div class="grad"></div>
 
-		<div class="header">
-			<div><img src='assets/img/logo2.png'/></div>
-		</div>
+
 		<div class="login toggleElement">
 			<form action ="#" method = "post">
 				<input type="text" placeholder="username" name="username" required><br>

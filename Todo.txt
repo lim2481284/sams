@@ -1,45 +1,39 @@
-- change login ui 					x
-- done register 					x
-- profile picture ( optional ) 		x
-- setting notificatino on off 
-- notification 
-- understand the flow again 		x	
-- cancel button bug 				x
-- search button 
-- chat ( optional ) 
-- group chat ( optional ) 
-- comment system 
-- gamification system 
+
+- remove setting notificatino on off 
+- notification at dashboard
+
+Flow 
+	- student edit profile 
+	- 
 
 
-/*
-Main purpose : to ease the student manage their assignemnt 
 
-User flow : 
+
+
+
+
+
+
+***********************************************************************
+
+Main purpose : to ease the student and lecturer manage their assignemnt 
+
+Flow : 
 
 	Lecturer :
 		- dashboard 
-			- able to view notification 		o
-			- able to view statistic 			o
-			- calender 							o
-			- able to view student info 		o
+			- able to view notification 		
+			- calender 				
+			- able to view student info 		
 		- My course 
-			- able to create course 			x
-			- edit course 						x
-			- able to add assignemnt 			o
-				- edit , delete 
-			- able to add course material 		x
-				- display material list 
-				- delete , download 
-			- able to view kanban 				o
-			- able to verify submission 		o
+			- able to create ,view , delete kanban 			
+			- able to verify submission 			
 			
 			
 		
 	User : 
-		- register 			x
 		- profile 
-			- change password   x
+			- change password   	x
 			- setup profile 	x
 			- upload picture 	x
 		- dashboard 

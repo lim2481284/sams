@@ -1,3 +1,14 @@
+
+
+//Background cover animation
+$('.grad').mousemove(function(e){
+	var amountMovedX = (e.pageX * -1 / 50);
+	var amountMovedY = (e.pageY * -1 / 10);
+	$('.body').css('background-position', amountMovedX + 'px ' + amountMovedY + 'px');
+});
+
+
+
 $(".loginRegisterToggle").click(function(){
 	
 	$(".toggleElement").animate({			

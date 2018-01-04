@@ -10,37 +10,25 @@
 
 		<ul class="nav">
 			<li class="dashboard">
-				<a href="dashboard.php">
+				<a href="dashboard_lecturer.php">
 					<i class="pe-7s-graph"></i>
 					<p>Dashboard</p>
 				</a>
 			</li>
 			<li  class="profile">
-				<a href="profile.php">
+				<a href="profile_lecturer.php">
 					<i class="pe-7s-user"></i>
 					<p>User Profile</p>
 				</a>
 			</li>
-			<li  class="courseList studentSection">
-				<a href="courseList.php">
-					<i class="pe-7s-note2"></i>
-					<p>Course List</p>
-				</a>
-			</li>
 			<li  class="myCourse">
-				<a href="myCourse.php">
+				<a href="course_lecturer.php">
 					<i class="pe-7s-news-paper"></i>
 					<p>My Course</p>
 				</a>
 			</li>
-			<li  class="settings">
-				<a href="settings.php">
-					<i class="pe-7s-science"></i>
-					<p>Settings</p>
-				</a>
-			</li>
 			<li  class="notifications">
-				<a href="notifications.php">
+				<a href="notification_lecturer.php">
 					<i class="pe-7s-bell"></i>
 					<p>Notifications</p>
 				</a>
@@ -55,14 +43,14 @@
 $(function() {
 	var url = window.location.pathname.split("/").pop();
 	var path = url.split(".");
-	var path_name = path[0];	
+	var path_name = path[0];
 	if(path_name=="")
 	{
 		$('.dashboard').addClass("active");
 	}
-	else 
+	else
 	{
-		
+
 		$('.'+path_name).addClass("active");
 	}
 });
@@ -73,33 +61,13 @@ $(function() {
 	session_start();
 	$userRole = $_SESSION['role'];
 	$img_url = $_SESSION['img_url'];
-	
-	// change menu picture 
+
+	// change menu picture
 	echo "
-		<script>			
+		<script>
 			$('.menuPicture').attr('src','assets/img/profile/$img_url'+'.png');
 		</script>
 	";
-	
-	
-	// change menu based on rule 
-	if($userRole == 1)
-	{
-		echo "
-		<script>
-			$('.studentSection').show();
-			$('.lecturerSection').hide();
-		</script>
-		";
-	}
-	else 
-	{
-		echo "
-		<script>
-			$('.studentSection').hide();
-			$('.lecturerSection').show();
-		</script>
-		";
-	}
+
 
 ?>

@@ -3,23 +3,23 @@ function readURL(input) {
 		var reader = new FileReader();
 		reader.readAsDataURL(input.files[0]);
 	}
-}		
+}
 
 
 $(document).ready(function(){
 
-	
-	//Edit assignment button function 
+
+	//Edit assignment button function
 	$('.editAssignmentBtn').click(function(){
 		var title = $(this).parent().parent().find('.assignmentTitle').html();
 		var assignmentDescription = $(this).parent().parent().find('.assignmentDescription').html();
 		var assignmentDeadline = $(this).closest('tr').find('.assignmentDeadline').html();
-		
+
 		var assignmentID = $('.assignmentID').val();
-		
-		
+
+
 		swal({
-		  title: 'Create Folder',			  
+		  title: 'Create Folder',
 		  allowOutsideClick: false,
 		  showCancelButton: true,
 		   html:`
@@ -33,43 +33,43 @@ $(document).ready(function(){
 			<input type="hidden" name="assignmentID" value="`+assignmentID+`"/>
 			<input name="description" id="swal-input-name" class="swal2-input" value="`+assignmentDescription+`">
 			<label class="swal-label">Deadline </label>
-			<input name="deadline" id="swal-input-key" class="swal2-input" value="`+assignmentDeadline+`">						
-		  </form>`,			  
+			<input name="deadline" id="swal-input-key" class="swal2-input" value="`+assignmentDeadline+`">
+		  </form>`,
 		  focusConfirm: false,
 		  preConfirm: function () {
-			return new Promise(function (resolve,reject) {	
+			return new Promise(function (resolve,reject) {
 				if(!$('#swal-input-name').val())
-				{							
+				{
 					reject('Please fill in all the info');
-				}					  
+				}
 				else {
 					resolve([
 					  $('#swal-input-name').val(),
 					  $('#swal-input-code').val(),
 					  $('#swal-input-key').val(),
 					  $('#swal-input-description').val()
-					])					
+					])
 				}
 			})
 		  }
-		}).then(function (result) {						
+		}).then(function (result) {
 			  if (result.dismiss === 'cancel') {}
-			  else 
+			  else
 			  {
 				document.getElementById("myForm").submit();
 			  }
-													
+
 		}).catch(swal.noop)
 	});
 
-	
-	//Add assignemnt button function 
+
+	//Add assignemnt button function
 	$('.addAssignment').click(function(){
-		
-		
-		var courseID = $('.courseID').val();		
+
+
+		var courseID = $('.courseID').val();
 		swal({
-		  title: 'Create Assignment',			  
+		  title: 'Create Assignment',
 		  allowOutsideClick: false,
 		  showCancelButton: true,
 		  html:`
@@ -82,159 +82,158 @@ $(document).ready(function(){
 			<input type="hidden" name="courseID" value="`+courseID+`"/>
 			<input name="description" id="swal-input-name" class="swal2-input" value="">
 			<label class="swal-label">Deadline </label>
-			<input name="deadline" id="swal-input-key" class="swal2-input" value="">						
-		  </form>`,			  
+			<input name="deadline" id="swal-input-key" class="swal2-input" value="">
+		  </form>`,
 		  focusConfirm: false,
 		  preConfirm: function () {
-			return new Promise(function (resolve,reject) {	
+			return new Promise(function (resolve,reject) {
 				if(!$('#swal-input-name').val())
-				{							
+				{
 					reject('Please fill in all the info');
-				}					  
+				}
 				else {
 					resolve([
 					  $('#swal-input-name').val(),
 					  $('#swal-input-code').val(),
 					  $('#swal-input-key').val(),
 					  $('#swal-input-description').val()
-					])					
+					])
 				}
 			})
 		  }
-		}).then(function (result) {						
+		}).then(function (result) {
 			  if (result.dismiss === 'cancel') {}
-			  else 
+			  else
 			  {
 				document.getElementById("myForm").submit();
 			  }
-													
+
 		}).catch(swal.noop)
 	});
 
 
-		
-	$(document).on('change','.materialFileUpload',function(){		
+
+	$(document).on('change','.materialFileUpload',function(){
 		$("#fileForm").submit();
 	});
-	
-		
-	//On click assignment and material button 
-	//Change the table and hightlight the menu button 
+
+
+	//On click assignment and material button
+	//Change the table and hightlight the menu button
 	$('.materialBtn').click(function(){
 		$(this).attr('class','materialBtn menuActive courseMenuList');
 		$('.assignmentBtn').attr('class','assignmentBtn courseMenuList');
 		$('.assignmentSection').hide();
 		$('.materialSection').show();
-		
+
 	});
 	$('.assignmentBtn').click(function(){
 		$(this).attr('class','assignmentBtn menuActive courseMenuList');
 		$('.materialBtn').attr('class','materialBtn courseMenuList');
 		$('.assignmentSection').show();
 		$('.materialSection').hide();
-		
-	});	
-		
-	//back button 
-	$('.backBtn').click(function(){
-		
-		window.location.href = "myCourse.php";
+
 	});
-	
-	
-		
-	//Edit course button function 
+
+	//back button
+	$('.backBtn').click(function(){
+		window.location.href = "course_lecturer.php";
+	});
+
+
+
+	//Edit course button function
 	$('.editCourse').click(function(){
 		var code = $('.infoCourseCode').val();
 		var name = $('.infoCourseName').html();
 		var description = $('.infoCourseDescription').html();
 		var key = $('.courseKey').val();
 		var courseID = $('.courseID').val();
-		
-		
+
+
 		swal({
-		  title: 'Create Folder',			  
+		  title: 'Create Folder',
 		  allowOutsideClick: false,
 		  showCancelButton: true,
 		  html:'<form id="myForm" action="#" method="post" ><br><label class="swal-label">Subject code  </label><input id="swal-input-code" name="code" class="swal2-input"  value="'+code+'"><input type="hidden" name="editCourse" value="'+courseID+'"/>' +
-		  '<label class="swal-label">Subject name </label><input name="name" id="swal-input-name" class="swal2-input" value="'+name+'"><label class="swal-label">Enrollment key </label><input name="key" id="swal-input-key" class="swal2-input" value="'+key+'"><label class="swal-label">Description </label><input name="description" id="swal-input-description" class="swal2-input" value="'+description+'"></form>',			  
+		  '<label class="swal-label">Subject name </label><input name="name" id="swal-input-name" class="swal2-input" value="'+name+'"><label class="swal-label">Enrollment key </label><input name="key" id="swal-input-key" class="swal2-input" value="'+key+'"><label class="swal-label">Description </label><input name="description" id="swal-input-description" class="swal2-input" value="'+description+'"></form>',
 		  focusConfirm: false,
 		  preConfirm: function () {
-			return new Promise(function (resolve,reject) {	
+			return new Promise(function (resolve,reject) {
 				if(!$('#swal-input-name').val())
-				{							
+				{
 					reject('Please fill in all the info');
-				}					  
+				}
 				else {
 					resolve([
 					  $('#swal-input-name').val(),
 					  $('#swal-input-code').val(),
 					  $('#swal-input-key').val(),
 					  $('#swal-input-description').val()
-					])					
+					])
 				}
 			})
 		  }
-		}).then(function (result) {						
+		}).then(function (result) {
 			  if (result.dismiss === 'cancel') {}
-			  else 
+			  else
 			  {
 				document.getElementById("myForm").submit();
 			  }
-													
+
 		}).catch(swal.noop)
 	});
 
-	
-		
-	//Create course button function 
+
+
+	//Create course button function
 	$('.createCourse').click(function(){
-	  
+
 		swal({
-		  title: 'Create Folder',			  
+		  title: 'Create Folder',
 		  allowOutsideClick: false,
 		  showCancelButton: true,
 		  html:'<form id="myForm" action="#" method="post" ><br><label class="swal-label">Subject code  </label><input id="swal-input-code" name="code" class="swal2-input"  value=""><input type="hidden" name="createCourse"/>' +
-		  '<label class="swal-label">Subject name </label><input name="name" id="swal-input-name" class="swal2-input" value=""><label class="swal-label">Enrollment key </label><input name="key" id="swal-input-key" class="swal2-input" value=""><label class="swal-label">Description </label><input name="description" id="swal-input-description" class="swal2-input" value=""></form>',			  
+		  '<label class="swal-label">Subject name </label><input name="name" id="swal-input-name" class="swal2-input" value=""><label class="swal-label">Enrollment key </label><input name="key" id="swal-input-key" class="swal2-input" value=""><label class="swal-label">Description </label><input name="description" id="swal-input-description" class="swal2-input" value=""></form>',
 		  focusConfirm: false,
 		  preConfirm: function () {
-			return new Promise(function (resolve,reject) {	
+			return new Promise(function (resolve,reject) {
 				if(!$('#swal-input-name').val())
-				{							
+				{
 					reject('Please fill in all the info');
-				}					  
+				}
 				else {
 					resolve([
 					  $('#swal-input-name').val(),
 					  $('#swal-input-code').val(),
 					  $('#swal-input-key').val(),
 					  $('#swal-input-description').val()
-					])					
+					])
 				}
 			})
 		  }
-		}).then(function (result) {						
+		}).then(function (result) {
 			  if (result.dismiss === 'cancel') {}
-			  else 
+			  else
 			  {
 				document.getElementById("myForm").submit();
 			  }
-													
+
 		}).catch(swal.noop)
 	});
-	
+
 	var courseID = getUrlParameter('courseID');
 	if(courseID)
 	{
 		$('.displayCourseSection').show();
-		
-		
+
+
 	}
-	else 
+	else
 	{
 		$('.createCourseSection').show();
-	}	
-		
+	}
+
 });
 
 
