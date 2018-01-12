@@ -1,0 +1,148 @@
+.emptyLabel{
+  font-size:150%;
+  text-align: center;
+  color:lightgray;
+
+}
+
+.materialList,
+.assList{
+  border-bottom: 1px solid lightgray;
+  height:110px;
+  width:100%;
+  position:relative;
+}
+.assList{
+  min-height: 100px;
+}
+.materialName{
+  width:60%;
+  float:left;
+  position:relative;
+  line-height: 100px;
+  vertical-align: middle;
+  padding-left:20px;
+}
+.assName,
+.assDescription{
+  width:60%;
+  float:left;
+  position:relative;
+  padding-left:20px;
+  padding-top:0px;
+  word-wrap: break-word;
+}
+.assDescription{
+  font-size:0.85em;
+}
+.assName{
+  padding-top:25px;
+  font-weight: bold;
+}
+
+.downloadBtn,
+.kanbanBtn,
+.submitBtn{
+  float:right;
+  position:relative;
+  border:none;
+  background: transparent;
+  border:1px solid lightgray;
+  padding:5px;
+  color:gray;
+  cursor:pointer;
+  margin-top:40px;
+  transition:1s all;
+  outline:none;
+}
+.kanbanBtn,
+.submitBtn{
+  margin-top:0;
+}
+.submitBtn{
+  border: 1px solid #4480c2;
+  color:#4480c2;
+}
+.downloadBtn:hover,
+.kanbanBtn:hover{
+  background: lightgray;
+  color:white;
+}
+
+div#ass{
+  margin-top:5% !important;
+}
+.notificationContent{
+  padding:40px 10px;
+}
+.courseCode{
+  padding:0px 10px;
+}
+.courseName{
+  padding:0px 10px;
+  font-size:90%;
+  color:lightgray;
+}
+
+a{
+  text-decoration:none !important;
+}
+a:hover{
+  text-decoration: none !important;
+}
+.courseCode{
+  text-decoration: underline;
+      width: fit-content;
+  font-size:120%;
+  color:#337ab7;
+  padding-bottom:0px;
+}
+.nav-tabs{
+  width:100%;
+  border:none !important;
+}
+li{
+      font-size: inherit !important;
+}
+
+.findCourseBtn{
+    border:none;
+    color:#4480c2;
+    border:1px solid #4480c2;
+    background:transparent;
+    border-radius: 20px;
+    padding:20px 30px;
+    cursor:pointer;
+    opacity:0.7;
+    transition:1s all;
+     animation: grow 3s infinite;
+     outline:none;
+}
+.findCourseBtn:hover{
+  background: #4480c2;
+  color:white;
+
+}
+
+.buttonSection{
+  text-align: center;
+}
+
+
+@keyframes grow {
+    0%   {
+        transform: scale(1);
+    }
+    25%  {
+      transform: scale(1.2);
+    }
+    50%  {
+      transform: scale(1);
+    }
+    75%  {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+}

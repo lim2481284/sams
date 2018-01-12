@@ -1,13 +1,14 @@
 $(document).ready(function(){
 
-	//Notification content setting 	
-	$.notify({
-		icon: 'pe-7s-gift',
-		message: "Hi <b> Username</b>, <br> You have 3 new assignment."
+	// On change course list
+	$(document).on('change','.courseList',function(){
+		var courseID = $(this).val();
+		$('.table').hide();
+		$('.table'+courseID).fadeIn(300);
 
-	},{
-		type: 'info',
-		timer: 10000
+
 	});
+
+
 
 });

@@ -1,0 +1,110 @@
+.form-group {
+    text-align: center;
+    margin-bottom: 5%;
+}
+.form-group input, .form-group select, .form-group textarea{
+    color: #8f9299 ;
+    width: 30%;
+    transition:0.5s all;
+    margin: auto;
+    padding: 1%;
+    border-radius: 5px;
+    box-sizing:border-box;
+    outline:none;
+    border: 1px solid lightgray;
+
+}
+.form-group input:focus{
+  width:80%;
+
+}
+
+
+.searchBtn{
+  background: transaprent;
+  border:none;
+  background-color:transparent;
+  color:gray;
+  outline:none;
+
+}
+.searchResult{
+  margin-top:10%;
+  margin-bottom: 5%;
+}
+.searchList
+{
+  cursor:pointer;
+  transition:1s all;
+  width:100%;
+  margin:auto;
+  position:relative;
+  height:100px;
+  margin-top:10%;
+  border-bottom: 1px solid #efefef;
+}
+
+.listContent{
+  width:80%;
+  float:left;
+  position:relative;
+  color:#adadad;
+  padding-left:5%;
+
+}
+.listAction{
+  width:15%;
+  float:left;
+  position:relative;
+}
+.listContent p{
+  margin-top:5px;
+}
+.noResult{
+  text-align: center;
+  color:lightgray;
+  font-size:150%;
+}
+.enrollBtn,
+.viewCourseBtn{
+  margin-top:20px;
+    border:none;
+    color:#4480c2;
+    border:1px solid #4480c2;
+    background:transparent;
+    border-radius: 5px;
+    padding:10px 15px;
+    cursor:pointer;
+    opacity:0.5;
+    transition:1s all;
+     animation: grow 3s infinite;
+     outline:none;
+     animation: grow 3s infinite;
+}
+.enrollBtn:hover,
+.viewCourseBtn:hover{
+  background: #4480c2;
+  color:white;
+
+}
+
+
+
+
+@keyframes grow {
+    0%   {
+        transform: scale(1);
+    }
+    25%  {
+      transform: scale(1.1);
+    }
+    50%  {
+      transform: scale(1);
+    }
+    75%  {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+}

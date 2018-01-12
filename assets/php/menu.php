@@ -27,12 +27,6 @@
 					<p>My Course</p>
 				</a>
 			</li>
-			<li  class="notifications">
-				<a href="notification_lecturer.php">
-					<i class="pe-7s-bell"></i>
-					<p>Notifications</p>
-				</a>
-			</li>
 		</ul>
 	</div>
 </div>

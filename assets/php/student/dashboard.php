@@ -1,0 +1,112 @@
+<?php
+	session_start();
+
+	//Check if user have course or not
+  $sql = "select * from user_course where userID = $USERID";
+  $result = mysqli_query($conn,$sql);
+  if(mysqli_num_rows($result)==0)
+  {
+    echo "<script>
+      $('.bodyContent').html(`
+        <p class=\"emptyLabel\">You don't have any course </p>
+        <br>
+        <div class=\"buttonSection\">
+          <a href='search_student.php'><button class=\"findCourseBtn\">Add now</button></a>
+        </div>
+      `);
+
+
+    </script>";
+  }
+
+	//Grab assignment list
+	/*
+		1 - get all user registered course
+		2 - get all course name
+		3 - get all assignment
+	*/
+
+	$sql = "select * from user_course where userID = $USERID";
+  $result = mysqli_query($conn,$sql);
+	$count =0;
+	while($list=mysqli_fetch_assoc($result)){
+			$courseID = $list['courseID'];
+			$sql_get_ass = "select * from course where courseID = $courseID";
+			$result_ass = mysqli_query($conn,$sql_get_ass);
+			$list_ass=mysqli_fetch_assoc($result_ass);
+
+			$courseName = $list_ass['courseName'];
+			$courseCode = $list_ass['courseCode'];
+
+			$ass_sql = "select * from assignment where courseID = $courseID";
+		  $ass_result = mysqli_query($conn,$ass_sql);
+			$ass_size = mysqli_num_rows($ass_result);
+			echo"
+				<script>
+					var assHTML=`
+						<div class='panel panel-default'>
+							<a data-toggle='collapse' data-parent='#accordion' href='#collapse$count'>
+						  <div class='panel-heading'>
+										<p class='courseCode' value='$courseID'>$courseCode</p>
+										<p class='courseName'> $courseName </p>
+						  </div>
+							</a>
+							 <div id='collapse$count' class='panel-collapse collapse'>
+					`;
+				</script>
+			";
+
+
+
+
+			if($ass_size==0)
+			{
+				echo"
+					<script>
+						 assHTML+=`
+						 <div class='panel-body'>
+						 	No assigment
+						 </div>
+						</div>
+						`;
+					</script>
+				";
+			}
+			while($ass_list=mysqli_fetch_assoc($ass_result)){
+					$assName = $ass_list['assignmentName'];
+					$assDesc = $ass_list['assignmentDescription'];
+					$assDate = $ass_list['endDate'];
+					echo "
+					<script>
+						assHTML+=`
+						<div class='panel-body'>
+									<div class='assList'>
+											<div class='assContent'>
+												<p class='assName'>$assName</p>
+												<p class='assDescription'>$assDesc</p>$assDate
+											</div>
+											<div class='assAction'>
+												 <button class='submitBtn'> Submit </button>
+												 <button class='kanbanBtn'> Kanban </button>
+											</div>
+									</div>
+								</div>
+						`;
+
+
+					</script>";
+
+			}
+
+
+			echo"
+				<script>
+					assHTML+='</div>';
+					$('.assBody').prepend(assHTML);
+				</script>
+			";
+			$count++;
+	}
+
+
+?>

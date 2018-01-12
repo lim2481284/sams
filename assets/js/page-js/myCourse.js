@@ -7,8 +7,7 @@ function readURL(input) {
 
 
 $(document).ready(function(){
-
-
+   $( "#datepicker" ).datepicker();
 	//Edit assignment button function
 	$('.editAssignmentBtn').click(function(){
 		var title = $(this).parent().parent().find('.assignmentTitle').html();
@@ -33,25 +32,11 @@ $(document).ready(function(){
 			<input type="hidden" name="assignmentID" value="`+assignmentID+`"/>
 			<input name="description" id="swal-input-name" class="swal2-input" value="`+assignmentDescription+`">
 			<label class="swal-label">Deadline </label>
-			<input name="deadline" id="swal-input-key" class="swal2-input" value="`+assignmentDeadline+`">
-		  </form>`,
-		  focusConfirm: false,
-		  preConfirm: function () {
-			return new Promise(function (resolve,reject) {
-				if(!$('#swal-input-name').val())
-				{
-					reject('Please fill in all the info');
-				}
-				else {
-					resolve([
-					  $('#swal-input-name').val(),
-					  $('#swal-input-code').val(),
-					  $('#swal-input-key').val(),
-					  $('#swal-input-description').val()
-					])
-				}
-			})
-		  }
+			<input name="deadline" id="deadline" type='text' class="swal2-input datepicker" value="`+assignmentDeadline+`">
+		  </form>
+
+			`,
+		  focusConfirm: false
 		}).then(function (result) {
 			  if (result.dismiss === 'cancel') {}
 			  else
@@ -81,8 +66,17 @@ $(document).ready(function(){
 			<label class="swal-label">Assignment description </label>
 			<input type="hidden" name="courseID" value="`+courseID+`"/>
 			<input name="description" id="swal-input-name" class="swal2-input" value="">
+			<label class="swal-label">Assigment type </label>
+			<select class="swal2-input assType" name='assType'>
+				<option value='0'>Individual</option>
+				<option value='1'>Group</option>
+			</select>
+			<label class="swal-label">Group size </label>
+			<input name="score" id="swal-input-key" type='text' class="swal2-input"  placeholder='Group size (if any)'>
 			<label class="swal-label">Deadline </label>
-			<input name="deadline" id="swal-input-key" class="swal2-input" value="">
+			<input name="deadline" id="swal-input-key" type='date' class="swal2-input" value="">
+			<label class="swal-label">Total mark </label>
+			<input name="score" id="swal-input-key" type='text' class="swal2-input" value="">
 		  </form>`,
 		  focusConfirm: false,
 		  preConfirm: function () {
@@ -124,6 +118,7 @@ $(document).ready(function(){
 		$(this).attr('class','materialBtn menuActive courseMenuList');
 		$('.assignmentBtn').attr('class','assignmentBtn courseMenuList');
 		$('.assignmentSection').hide();
+		$('.studentSection').hide();
 		$('.materialSection').show();
 
 	});
@@ -132,9 +127,18 @@ $(document).ready(function(){
 		$('.materialBtn').attr('class','materialBtn courseMenuList');
 		$('.assignmentSection').show();
 		$('.materialSection').hide();
+		$('.studentSection').hide();
 
 	});
+	$('.studentBtn').click(function(){
+		$(this).attr('class','studentBtn menuActive courseMenuList');
+		$('.materialBtn').attr('class','materialBtn courseMenuList');
+			$('.assignmentBtn').attr('class','assignmentBtn courseMenuList');
+		$('.studentSection').show();
+		$('.materialSection').hide();
+		$('.assignmentSection').hide();
 
+	});
 	//back button
 	$('.backBtn').click(function(){
 		window.location.href = "course_lecturer.php";

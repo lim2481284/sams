@@ -1,8 +1,19 @@
+.table{
+	margin-top: 3%;
+	display:none;
+}
+
 .tutorialSection{
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+}
+.courseList{
+	margin-top:3%;
+}
+a{
+	color:#4480c2;
 }
 
 .tutorialBtn{
@@ -24,9 +35,9 @@
 .content{
 	position:relative;
 }
-	
-	
+
+
 .alert-info{
-	
+
 	background:#F5B7B1;
 }

@@ -3,7 +3,7 @@
 
 <div class="row">
 	<div class="small-12 medium-12 large-12 columns">
-		<h2><a href="#"><img class='logo' src='assets/img/logo.png'></a></h2>
+		<h2><a href="dashboard_student.php"><img class='logo' src='assets/img/logo.png'></a></h2>
 		<!--
 		<div class="logo">
 		<a href="index.html"><img src="img/logo.png" alt="Willamette" /></a>

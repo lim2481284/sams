@@ -40,15 +40,17 @@
 			{
 				$courseID = $_POST['courseID'];
 				$name = $_POST['name'];
+				$assType = $_POST['assType'];
+				$score = $_POST['score'];
 				$description = $_POST['description'];
 				$deadline = $_POST['deadline'];
-				$sql="insert into assignment (`courseID`,`assignmentName`,`assignmentDescription`,`endDate`) values ('$courseID', '$name', '$description', '$deadline')";
+				$sql="insert into assignment (`courseID`,`assignmentType`,`assignmentName`,`assignmentDescription`,`endDate`,`score`) values ('$courseID','$assType', '$name', '$description', '$deadline','$score')";
 				if(mysqli_query($conn,$sql)){
 
 					echo"
 						<script>
 							swal({
-							  title: 'Assignment created',
+							  title: 'Assignment created ',
 							  type: 'success',
 							  showCancelButton: false
 							}).then((result) => {
@@ -276,6 +278,10 @@
 				$name = $row['assignmentName'];
 				$description = $row['assignmentDescription'];
 				$deadline = $row['endDate'];
+				$type = $row['assignmentType'];
+				if($type==0) $type='Individual';
+				else $type = 'Group';
+				$mark = $row['score'];
 				$assignmentID = $row['assignmentID'];
 				$courseID = $row['courseID'];
 
@@ -290,6 +296,8 @@
 
 								</td>
 								<td class='t_2 assignmentDeadline'>$deadline</td>
+								<td class='t_2 assignmentDeadline'>$type</td>
+								<td class='t_2 assignmentDeadline'>$mark</td>
 								<td class='t_3'>
 
 
@@ -316,7 +324,7 @@
 		{
 
 			//Grab profile data sql
-			$sql = "select * from course";
+			$sql = "select * from course where userID ='$USERID'";
 			$result = mysqli_query($conn,$sql);
 			while($row = mysqli_fetch_assoc($result))
 			{

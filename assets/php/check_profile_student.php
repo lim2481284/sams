@@ -2,14 +2,13 @@
 
 <?php
 
-
-if($_SESSION['role']==2){
+	if($_SESSION['role']==1){
 		if($_SESSION['profile']==0){
 
 			$base = basename($_SERVER['REQUEST_URI']);
 
 
-			if($base !='profile.php')
+			if($base !='profile_student.php')
 			{
 
 				echo "
@@ -19,28 +18,22 @@ if($_SESSION['role']==2){
 						  type: 'info',
 						  showCancelButton: false
 						}).then((result) => {
-						  location.href='profile.php';
+						  location.href='profile_student.php';
 						})
 					</script>
 				";
 			}
 		}
+}
+else
+{
+		echo "<script>
+		swal('Please login first','','warning').then((result) => {
+			location.href='..';
+		});
+		</script>";
 
-	}
-	else {
-		echo "
-			<script>
-				swal({
-					title: 'Please login first ',
-					type: 'warning',
-					showCancelButton: false
-				}).then((result) => {
-					location.href='..';
-				})
-			</script>
-		";
-
-	}
+}
 
 
  ?>

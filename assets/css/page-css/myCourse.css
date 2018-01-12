@@ -2,7 +2,7 @@
 	color:gray;
 	font-size:80% !important;
 	width:80%;
-	
+
 }
 .createCourseSection,
 .displayCourseSection{
@@ -10,11 +10,11 @@
 }
 
 .initialForm{
-	
+
 	    display: initial;
 }
 
-.materialSection{
+.materialSection,.studentSection{
 	display:none;
 }
 
@@ -97,15 +97,15 @@
 	color:gray;
 	font-size:80% !important;
 	width:80%;
-	
+
 }
 
 .card{
-	
+
 	 display: flow-root;
 }
 
-.all-icons .font-icon-detail{	
+.all-icons .font-icon-detail{
 	background:white;
 }
 .row{
@@ -122,10 +122,15 @@
 	text-align:center;
 }
 .menuActive{
-	font-weight:800;
+	font-weight:800 !important;
 }
 .courseMenuList{
 	padding:3%;
+	background: transparent;
+	border:none;
+	outline:none;
+	color:#77a6db;
+	font-weight: lighter;
 }
 .leftBtn{
 	float:left;
@@ -133,7 +138,7 @@
 }
 .fileSection{
 	position:relative;
-	
+
 }
 
 
@@ -160,7 +165,7 @@
     background: #3DBAD9;
     color: white;
     outline: none;
-    border: none;	
+    border: none;
 }
 
 .profileFileUpload{
@@ -169,7 +174,7 @@
 
 #uploadedImage{
 	max-height:400px;
-	max-width:400px;	
+	max-width:400px;
 }
 
 .imageSection{
@@ -180,13 +185,13 @@
 
 
 /*Table styling */
-.t_1{
-	width:50%;
+.t{
+	width:15%;
+}
+.t1{
+	width:30%;
 }
 
-.t_2{
-	width:20%;
-}
 .t_3 button{
 	width:40%;
 }

@@ -1,0 +1,236 @@
+.emptyLabel{
+  font-size:150%;
+  text-align: center;
+  color:lightgray;
+
+}
+
+.materialList,
+.assList{
+  border-bottom: 1px solid lightgray;
+  height:110px;
+  width:100%;
+  position:relative;
+}
+.assList{
+  min-height: 100px;
+}
+.materialName{
+  width:60%;
+  float:left;
+  position:relative;
+  line-height: 100px;
+  vertical-align: middle;
+  padding-left:20px;
+}
+.assName,
+.assDescription{
+  width:60%;
+  float:left;
+  position:relative;
+  padding-left:20px;
+  padding-top:0px;
+  word-wrap: break-word;
+}
+.assDescription{
+  font-size:0.85em;
+}
+.assName{
+  padding-top:25px;
+  font-weight: bold;
+}
+
+.downloadBtn,
+.kanbanBtn,
+.submitBtn{
+  float:right;
+  position:relative;
+  border:none;
+  background: transparent;
+  border:1px solid lightgray;
+  padding:5px;
+  color:gray;
+  cursor:pointer;
+  margin-top:40px;
+  transition:1s all;
+  outline:none;
+}
+.kanbanBtn,
+.submitBtn{
+  margin-top:0;
+}
+.submitBtn{
+  border: 1px solid #4480c2;
+  color:#4480c2;
+}
+.downloadBtn:hover,
+.kanbanBtn:hover{
+  background: lightgray;
+  color:white;
+}
+.submitBtn:hover{
+
+  background: #4480c2;
+  color:white;
+}
+li{
+      font-size: inherit !important;
+}
+.nav-tabs>li.active>a,
+.nav-tabs>li>a{
+    font-size:100%;
+}
+.nav-tabs{
+  width:100%;
+  border:none !important;
+}
+.nav{
+  margin-top:10%;
+}
+.courseInfo{
+    color:#adadad;
+}
+.backBtn{
+  border:none;
+  color:#4480c2;
+  border:1px solid #4480c2;
+  background:transparent;
+  padding:10px 10px;
+  cursor:pointer;
+  opacity:0.7;
+  transition:1s all;
+   outline:none;
+  margin-bottom: 20px;
+
+}
+.findCourseBtn{
+    border:none;
+    color:#4480c2;
+    border:1px solid #4480c2;
+    background:transparent;
+    border-radius: 20px;
+    padding:20px 30px;
+    cursor:pointer;
+    opacity:0.7;
+    transition:1s all;
+     animation: grow 3s infinite;
+     outline:none;
+}
+.findCourseBtn:hover{
+  background: #4480c2;
+  color:white;
+
+}
+
+.buttonSection{
+  text-align: center;
+}
+
+
+@keyframes grow {
+    0%   {
+        transform: scale(1);
+    }
+    25%  {
+      transform: scale(1.1);
+    }
+    50%  {
+      transform: scale(1);
+    }
+    75%  {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+}
+
+
+.form-group {
+    text-align: center;
+    margin-bottom: 5%;
+}
+.form-group input, .form-group select, .form-group textarea{
+    color: #8f9299 ;
+    width: 30%;
+    transition:0.5s all;
+    margin: auto;
+    padding: 1%;
+    border-radius: 5px;
+    box-sizing:border-box;
+    outline:none;
+    border: 1px solid lightgray;
+
+}
+.form-group input:focus{
+  width:80%;
+
+}
+
+
+.searchBtn{
+  background: transaprent;
+  border:none;
+  background-color:transparent;
+  color:gray;
+  outline:none;
+
+}
+.courseContent{
+  margin-top:0%;
+  margin-bottom: 5%;
+}
+.courseList
+{
+  cursor:pointer;
+  transition:1s all;
+  width:100%;
+  margin:auto;
+  position:relative;
+  height:100px;
+  margin-top:10%;
+  border-bottom: 1px solid #efefef;
+}
+
+.listContent{
+  width:80%;
+  float:left;
+  position:relative;
+  color:#adadad;
+  padding-left:5%;
+
+}
+.listAction{
+  width:15%;
+  float:left;
+  position:relative;
+}
+.listContent p{
+  margin-top:5px;
+}
+.noResult{
+  text-align: center;
+  color:lightgray;
+  font-size:150%;
+}
+.enrollBtn,
+.viewCourseBtn{
+  margin-top:20px;
+    border:none;
+    color:#4480c2;
+    border:1px solid #4480c2;
+    background:transparent;
+    border-radius: 5px;
+    padding:10px 15px;
+    cursor:pointer;
+    opacity:0.5;
+    transition:1s all;
+     animation: grow 3s infinite;
+     outline:none;
+}
+.enrollBtn:hover,
+.viewCourseBtn:hover{
+  background: #4480c2;
+  color:white;
+
+}

@@ -1,0 +1,55 @@
+
+UNI
+	- fyp testing and appoitment 	  : tmr 3pm
+	- fyp-cy
+	- check fyp presentation	  : today 4 pm 
+	- prepare pl presentation slide 
+	- check web lab presentation 		 
+	- check all university subject exam, presentation ,assignemnt and update it at the timeline
+	- meet sir azlan for claim -- waiting for message 
+	- school fee 
+	
+
+OTHER
+	** check contest / competition ** 
+	** check timeline and anytime forget ? **  
+	** Update everythingg **
+	** check email and whatsapp **
+	- check bank acc 
+	- fix phone
+	- TRIP PLAN
+
+JOB
+	- rental bee design 
+	- tutor fix 
+
+COM
+	- check maybank
+ 	- health hackathon fee and check exam 
+
+
+
+FYP 
+	- fix lecturer create course problem : no user 		x
+	- user interface - admin and student - blue color theme 
+	- serach course 
+	- enroll course 
+
+	- notification from both lecturer and student side and in the dashboard 
+	- remove setting 
+	- download course material 
+	- student profile 
+		- first time setup 
+		- view profile 
+	- kanban 
+	- dashbord progress bar + assignment list 
+	- profile + gamification tree 
+	
+
+	- lecturer 
+		- notication list 
+		- notification 
+		- dashboard = assignment list + status 
+	- other 
+		- login UI 
+		- loader for all page 

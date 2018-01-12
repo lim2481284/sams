@@ -1,56 +1,39 @@
 
-- remove setting notificatino on off 
-- notification at dashboard
 
-Flow 
-	- student edit profile 
-	- 
-
-
-
-
-
-
-
-
-
-***********************************************************************
-
-Main purpose : to ease the student and lecturer manage their assignemnt 
-
-Flow : 
 
 	Lecturer :
-		- dashboard 
-			- able to view notification 		
-			- calender 				
-			- able to view student info 		
-		- My course 
-			- able to create ,view , delete kanban 			
-			- able to verify submission 			
-			
-			
-		
-	User : 
-		- profile 
-			- change password   	x
-			- setup profile 	x
-			- upload picture 	x
-		- dashboard 
-			- notification 		o
-			- statistic 		o		
-			- calander 			o
-			- pin board 		o
-			- able to view lecturer info o
-		- search 
-			- able to search coruse list by insert lecturer name or course name or code					o
-			- able to enroll course 																	o
-			
-		- course 
-			- able to view course assignemtn and course material 	o
-				- able to download coruse material 					o
-				- able to view kanban 								o
-				- able to add submission 							o
+		- dashboard
+			- able to view notification (optional)
+			- calender									(optioanl)
+
+		- My course
+			- add student list in my course
+			- add group number
+			- change action to select
+			- action
+					- kanban ( for group )
+					- delete ass
+					- edit ass
+				  - verify assignment
+							- give mark
+					- verify group list
+
+	User :
+		- profile
+
+		- dashboard
+			- notification 		（optianl）
+			- calander 					(optional)
+			- design assignment list
+
+		- course
+			- design assignment list
+			- view lecturer info ( new tab )
+			- if assignment is group
+					- form group button first
+					- then submit and kanban button
+			- if aassignment is individual
+					- only submit button
 
 
 
@@ -58,64 +41,17 @@ Flow :
 
 
 
-Table 
+Table
 	- users : userID, username , password, name, email ,contact, address, gender, description, roleID
-	- setting : userID, notification 
-		- notificaiton : 0 = false , 1 = true 		
+	- setting : userID, notification
+		- notificaiton : 0 = false , 1 = true
 	- course : courseID, courseCode, courseName, courseDescription, courseKey, created_at
 	- user_course : userID, courseID, created_at
 	- course_material : courseID, material_link , created_at
 	- assignment : assignmentID, assignmentName, assignemntDescription, startDate, endDate , created_at
 	- course_assignemnt : courseID, assignemntID, created_at
-	- assignment_submission : userID, assignmentID, submission_link , created_at	
+	- assignment_submission : userID, assignmentID, submission_link , created_at
 	- kanban : kanbanID,assignmentID, kanbanName, kanbanDescription, created_at
 	- kanban_tab : tabID, kanbanID, tabName, created_at
-	- kanban_post : postID,tabID, kanbanID, postContent, postTitle, created_at	
+	- kanban_post : postID,tabID, kanbanID, postContent, postTitle, created_at
 	- comment : commentID, courseID, content, userID, created_at
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

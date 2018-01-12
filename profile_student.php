@@ -13,9 +13,12 @@
 		</div>
 		<div class="form-group">
 			<div class='label'>Username</div>
-			<input type="text" class="form-control username" name=username placeholder="Username" value="" disabled>
+			<input type="text" class="form-control username usernameField" name=username placeholder="Username" value="" disabled>
 		</div>
-
+		<div class="form-group">
+			<div class='label'>Full name</div>
+			<input type="text" class="form-control fullName" name='fullName'  placeholder="Full name" value=""  required>
+		</div>
 		<div class="form-group">
 			<div class='label'>Email address</div>
 			<input name='email' type="email" class="form-control email" placeholder="Email"  required>
@@ -53,7 +56,7 @@
 
 
 		<button type="submit" class="btn btn-info btn-fill pull-right" name='update'>Update Profile</button>
-		<button type="button" class="btn btn-default pull-right changePasswordBtn" name='update'>Change Password</button>
+		<!-- <button type="button" class="btn btn-default pull-right changePasswordBtn" name='update'>Change Password</button> -->
 		<div class="clearfix"></div>
 	</form>
 	<br><br><br><br><br><br>
@@ -83,6 +86,7 @@
 
 	</div>
 	<script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
 	<script>
 	$(document).ready(function(){
 
@@ -93,3 +97,10 @@
 
 	});
 	</script>
+
+	<!--php connection-->
+	<?php
+	include("assets/php/mysql_connect.inc.php");
+	include("assets/php/check_profile_student.php");
+	include("assets/php/student/profile_function.php");
+	?>
