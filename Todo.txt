@@ -1,6 +1,3 @@
-
-
-
 	Lecturer :
 		- dashboard
 			- able to view notification (optional)
@@ -9,35 +6,24 @@
 		- My course
 			- add student list in my course
 			- add group number
-			- change action to select
 			- action
 					- kanban ( for group )
-					- delete ass
-					- edit ass
 				  - verify assignment
 							- give mark
 					- verify group list
 
 	User :
-		- profile
-
 		- dashboard
 			- notification 		（optianl）
 			- calander 					(optional)
-			- design assignment list
 
 		- course
-			- design assignment list
 			- view lecturer info ( new tab )
 			- if assignment is group
 					- form group button first
 					- then submit and kanban button
 			- if aassignment is individual
 					- only submit button
-
-
-
-*/
 
 
 
