@@ -19,7 +19,7 @@ if($_SESSION['role']==2){
 						  type: 'info',
 						  showCancelButton: false
 						}).then((result) => {
-						  location.href='profile.php';
+						  location.href='profile_lecturer.php';
 						})
 					</script>
 				";
