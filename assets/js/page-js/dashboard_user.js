@@ -10,5 +10,8 @@ $(document).ready(function(){
 	$('.courseCode').on('click',function(){
 		var courseID = $(this).attr('value');
 		location.href='course_student.php?courseID='+courseID;
+
 	});
+
+
 });

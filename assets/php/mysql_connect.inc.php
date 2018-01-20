@@ -4,7 +4,7 @@
 
 
 	//Comment it to show the php error
-	error_reporting(0);
+	//error_reporting(0);
 
 
 	$DB_HOST	="localhost";

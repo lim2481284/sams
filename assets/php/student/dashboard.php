@@ -1,6 +1,14 @@
 <?php
 	session_start();
 
+	//Declaration for Generate calander event list
+	echo "
+	<script>
+		var myEvents = [];
+	</script>
+	";
+
+
 	//Check if user have course or not
   $sql = "select * from user_course where userID = $USERID";
   $result = mysqli_query($conn,$sql);
@@ -65,19 +73,25 @@
 					<script>
 						 assHTML+=`
 						 <div class='panel-body'>
-						 	No assigment
+						 	No assignment
 						 </div>
 						</div>
 						`;
 					</script>
 				";
 			}
+
+
+			//Get all assignment
 			while($ass_list=mysqli_fetch_assoc($ass_result)){
 					$assName = $ass_list['assignmentName'];
 					$assDesc = $ass_list['assignmentDescription'];
 					$assDate = $ass_list['endDate'];
+
+					//Create assignment list and generate calander
 					echo "
 					<script>
+						myEvents.push({title:'$assName deadline',start:'$assDate'});
 						assHTML+=`
 						<div class='panel-body'>
 									<div class='assList'>
@@ -87,13 +101,10 @@
 											</div>
 											<div class='assAction'>
 												 <button class='submitBtn'> Submit </button>
-												 <button class='kanbanBtn'> Kanban </button>
 											</div>
 									</div>
 								</div>
 						`;
-
-
 					</script>";
 
 			}
@@ -107,6 +118,20 @@
 			";
 			$count++;
 	}
+
+
+	//Final script for generate calander
+	echo "
+	<script>
+		$(document).ready(function(){
+			$('#calendar').fullCalendar({
+				editable: true,
+				eventLimit: true,
+				events: myEvents
+			});
+		});
+	</script>
+	";
 
 
 ?>

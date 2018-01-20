@@ -5,10 +5,7 @@ $(document).ready(function(){
 		var courseID = $(this).val();
 		$('.table').hide();
 		$('.table'+courseID).fadeIn(300);
-
-
 	});
-
 
 
 });

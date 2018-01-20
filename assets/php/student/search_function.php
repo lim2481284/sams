@@ -20,6 +20,8 @@
 							";
 					}
 					else {
+
+						//create user course for this user
 						$sql = "insert into user_course (`userID`,`courseID`) values ('$USERID' ,'$id')";
 					 	mysqli_query($conn,$sql);
 							echo "
@@ -27,6 +29,26 @@
 									swal('Subject enrolled','','success');
 								</script>
 							";
+
+						//Get current user name
+						$sql= "select * from users where userID = $USERID";
+			      $result = mysqli_query($conn, $sql);
+			      $list = mysqli_fetch_assoc($result);
+			      $name = $list['name'];
+
+
+						//Get course name and lecturer id
+						$sql= "select * from course where courseID = $id";
+			      $result = mysqli_query($conn, $sql);
+			      $list = mysqli_fetch_assoc($result);
+			      $course = $list['courseCode'];
+						$lecturer = $list['userID'];
+
+
+						//Create notification for lecturer
+						$sql = "INSERT INTO `notification`(`notificationMessage`, `notificationStatus`, `userID`, `notificationParent`) VALUES ('$name has enroll subject $course ',0,$lecturer,$USERID)";
+					 	mysqli_query($conn,$sql);
+
 					}
 
 			}

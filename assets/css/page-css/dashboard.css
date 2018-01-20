@@ -2,7 +2,11 @@
 	margin-top: 3%;
 	display:none;
 }
-
+#calendar {
+	max-width: 900px;
+	height: 100%;
+	margin: 0 auto;
+}
 .tutorialSection{
 	position: absolute;
 	top: 50%;

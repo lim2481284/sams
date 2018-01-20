@@ -7,24 +7,24 @@
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 
-
+			//Edit  assignment function
 			if(isset($_POST['editAssignment']))
 			{
 
 				$courseID = $_POST['courseID'];
 				$name = $_POST['name'];
+				$mark = $_POST['mark'];
 				$description = $_POST['description'];
 				$assignmentID = $_POST['assignmentID'];
 				$deadline = $_POST['deadline'];
 
-				$sql = "update assignment set assignmentName= '$name',assignmentDescription= '$description',endDate= '$deadline' where assignmentID= '$assignmentID' ";
+				$sql = "update assignment set score='$mark', assignmentName= '$name',assignmentDescription= '$description',endDate= '$deadline' where assignmentID= '$assignmentID' ";
 
 				if(mysqli_query($conn,$sql))
 				{
 					echo"
 					<script>
 						swal('Assignment updated','','success');
-
 					</script>";
 
 				}else
@@ -36,6 +36,7 @@
 
 			}
 
+			//Create assignment function
 			if(isset($_POST['createAssignment']))
 			{
 				$courseID = $_POST['courseID'];
@@ -43,8 +44,9 @@
 				$assType = $_POST['assType'];
 				$score = $_POST['score'];
 				$description = $_POST['description'];
+				$groupSize = $_POST['groupSize'];
 				$deadline = $_POST['deadline'];
-				$sql="insert into assignment (`courseID`,`assignmentType`,`assignmentName`,`assignmentDescription`,`endDate`,`score`) values ('$courseID','$assType', '$name', '$description', '$deadline','$score')";
+				$sql="insert into assignment (`courseID`,`group_size`,`assignmentType`,`assignmentName`,`assignmentDescription`,`endDate`,`score`) values ('$courseID',$groupSize,'$assType', '$name', '$description', '$deadline','$score')";
 				if(mysqli_query($conn,$sql)){
 
 					echo"
@@ -62,6 +64,7 @@
 				}
 			}
 
+			//Delete assignemnt function
 			if(isset($_POST['deleteAssignment']))
 			{
 				$id = $_POST['assignmentID'];
@@ -72,7 +75,7 @@
 					echo"
 						<script>
 							swal({
-							  title: 'Assiggment deleted',
+							  title: 'Assignment deleted',
 							  type: 'success',
 							  showCancelButton: false
 							}).then((result) => {
@@ -84,7 +87,7 @@
 				}
 			}
 
-
+			//Delete material function
 			if(isset($_POST['deleteMaterial']))
 			{
 				$link = $_POST['materialLink'];
@@ -107,6 +110,7 @@
 				}
 			}
 
+			//Upload file function
 			if(isset($_POST['file']))
 			{
 				$courseID = $_POST['courseID'];
@@ -138,7 +142,7 @@
 
 			}
 
-
+			//Create course function
 			if(isset($_POST['createCourse']))
 			{
 
@@ -168,6 +172,8 @@
 
 			}
 
+
+			//Edit course function
 			if(isset($_POST['editCourse']))
 			{
 
@@ -198,6 +204,8 @@
 
 		}
 
+
+		//DIsplay course content function based on paremeter
 		if(isset($_GET['courseID']))
 		{
 
@@ -270,7 +278,7 @@
 
 
 			//Grab assignment data
-			$sql = "select * from assignment where courseID = $courseID";
+			$sql = "select * from assignment where courseID = $courseID order by endDate DESC";
 			$result = mysqli_query($conn,$sql);
 			while($row = mysqli_fetch_assoc($result))
 			{
@@ -278,12 +286,46 @@
 				$name = $row['assignmentName'];
 				$description = $row['assignmentDescription'];
 				$deadline = $row['endDate'];
-				$type = $row['assignmentType'];
-				if($type==0) $type='Individual';
-				else $type = 'Group';
 				$mark = $row['score'];
 				$assignmentID = $row['assignmentID'];
 				$courseID = $row['courseID'];
+				$type = $row['assignmentType'];
+				$size = $row['group_size'];
+				$today = date("Y-m-d");   
+
+				if($type==1)
+				{
+					$type ="Group ($size)";
+					$option ="
+						<select class='form-control actionList'>
+							<option  selected>Choose action... </option>
+							<option value='deleteAssBtn'> Delete assignment </option>
+							<option value='editAssBtn'> Edit assignment </option>
+							<option value='verifySubBtn'> Verify submission </option>
+							<option value='verifyGroupBtn'> Verify group </option>
+						</select>
+					";
+				}
+				else
+				{
+					$type ='Individual';
+					$option ="
+						<select class='form-control actionList'>
+							<option  selected>Choose action... </option>
+							<option value='deleteAssBtn'> Delete assignment </option>
+							<option value='editAssBtn'> Edit assignment </option>
+							<option value='verifySubBtn'> Verify submission </option>
+						</select>
+					";
+				}
+
+				if($deadline < $today){
+						$option = "
+						<select class='form-control actionList' disabled>
+							<option  selected>Closed </option>
+						</select>
+						";
+				}
 
 				echo "
 					<script>
@@ -296,23 +338,54 @@
 
 								</td>
 								<td class='t_2 assignmentDeadline'>$deadline</td>
-								<td class='t_2 assignmentDeadline'>$type</td>
-								<td class='t_2 assignmentDeadline'>$mark</td>
+								<td class='t_2 assignmentType'>$type</td>
+								<td class='t_2 assignmentMark'>$mark</td>
 								<td class='t_3'>
-
-
-										<button class='customBtn'> Kanban  </button>
-										<button class='customBtn'> Verify   </button>
-										<form class='initialForm' action ='#' method='post'>
-											<input type='hidden' value='$assignmentID' class='assignmentID' name='assignmentID'/>
-											<button class='customBtn deleteAssignmentBtn' name='deleteAssignment'> Delete   </button>
-										</form>
-										<button class='customBtn editAssignmentBtn'> Edit   </button>
+									<form class='initialForm' action ='#' method='post'>
+										<input type='hidden' value='$assignmentID' class='assignmentID' name='assignmentID'/>
+										$option
+									</form>
 
 								</td>
 							</tr>
 						`;
 						$('.courseInfoAssignmentList').append(list);
+					</script>
+				";
+
+
+
+			}
+
+
+
+			//Grab student list
+			$sql = "select * from user_course where courseID = $courseID";
+			$result = mysqli_query($conn,$sql);
+			while($row = mysqli_fetch_assoc($result))
+			{
+				$studentID = $row['userID'];
+				$sql_get_student =  "select * from users where userID='$studentID'";
+				$result_get_student = mysqli_query($conn,$sql_get_student);
+				$list_get_student = mysqli_fetch_assoc($result_get_student);
+				$cardID = $list_get_student['cardID'];
+				$studentName = $list_get_student['name'];
+				$studentEmail = $list_get_student['email'];
+				$studentContact = $list_get_student['contact'];
+				$studentAddress= $list_get_student['address'];
+
+				echo "
+					<script>
+
+						var list = `
+								<tr>
+									<td>$cardID</td>
+									<td>$studentName</td>
+									<td>$studentEmail</td>
+									<td>$studentContact</td>
+								</tr>
+						`;
+						$('.studentTableContent').append(list);
 					</script>
 				";
 

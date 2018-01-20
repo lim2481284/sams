@@ -4,6 +4,35 @@
   color:lightgray;
 
 }
+.checkbox{
+  outline:none;
+}
+.checkbox:focus{
+  outline: none !important;
+}
+body{
+  overflow-x: hidden;
+}
+.formGroupSection{
+  position:absolute ;
+  top:0;
+  left:0;
+  background: white;
+  width: 100vw;
+  height: 100vh;
+  opacity:0;
+  transition:0.5s all;
+  z-index: -1;
+}
+.overlay{
+  opacity:1;
+  z-index: 1;
+}
+
+.passedBtn{
+  border:none !important;
+  color:lightgray !important;
+}
 
 .materialList,
 .assList{
@@ -13,7 +42,7 @@
   position:relative;
 }
 .assList{
-  min-height: 100px;
+  min-height: 140px;
 }
 .materialName{
   width:60%;
@@ -24,7 +53,8 @@
   padding-left:20px;
 }
 .assName,
-.assDescription{
+.assDescription,
+.assDate{
   width:60%;
   float:left;
   position:relative;
@@ -35,6 +65,11 @@
 .assDescription{
   font-size:0.85em;
 }
+.assDate{
+  font-size:0.85em;
+  color:lightgray;
+}
+
 .assName{
   padding-top:25px;
   font-weight: bold;
@@ -42,7 +77,9 @@
 
 .downloadBtn,
 .kanbanBtn,
-.submitBtn{
+.defaultBtn,
+.submitBtn,
+.primaryBtn{
   float:right;
   position:relative;
   border:none;
@@ -56,19 +93,24 @@
   outline:none;
 }
 .kanbanBtn,
-.submitBtn{
+.defaultBtn,
+.submitBtn,
+.primaryBtn{
   margin-top:0;
 }
-.submitBtn{
+.submitBtn,
+.primaryBtn{
   border: 1px solid #4480c2;
   color:#4480c2;
 }
 .downloadBtn:hover,
-.kanbanBtn:hover{
+.kanbanBtn:hover,
+.defaultBtn:hover{
   background: lightgray;
   color:white;
 }
-.submitBtn:hover{
+.submitBtn:hover,
+.primaryBtn:hover{
 
   background: #4480c2;
   color:white;

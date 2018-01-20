@@ -1,26 +1,46 @@
+
+
+
 	Lecturer :
 		- dashboard
 			- able to view notification (optional)
-			- calender									(optioanl)
 
 		- My course
-			- add student list in my course
-			- add group number
+			- create notification
 			- action
-					- kanban ( for group )
+					- kanban ( for group ) (x)
 				  - verify assignment
 							- give mark
 					- verify group list
+						- show name list , sort by team name
+
 
 	User :
 		- dashboard
-			- notification 		（optianl）
-			- calander 					(optional)
+			- notification
+			- syn UI and group form btn
+
+		- enroll
+				- notification
 
 		- course
-			- view lecturer info ( new tab )
 			- if assignment is group
 					- form group button first
-					- then submit and kanban button
+							- show name list	x
+							- tick on left to choose your group member		x
+							- show group member size and how many left		x
+							- radio button to choose leader								x
+							- disabled selected group member
+							- insert team name
+							- submit
+							- create notification
+
+					- then edit group button
+						- waiting for approve
+						- if reject, will send notification with reason then edit group again
+						- if approve then show submit and kanban btton 
 			- if aassignment is individual
 					- only submit button
+
+			- submit function
+				- create notification

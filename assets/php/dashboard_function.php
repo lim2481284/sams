@@ -2,9 +2,17 @@
 
 <?php
 
-    //Get all the course list and student list
+    //Get all the current user course
 		$sql = "select * from course where userID='$USERID'";
 		$result = mysqli_query($conn,$sql);
+
+		//Generate calander event list
+		echo "
+		<script>
+			var myEvents = [];
+		</script>
+		";
+
 		while($list = mysqli_fetch_assoc($result)){
 
 			$courseID = $list['courseID'];
@@ -32,6 +40,7 @@
 				</script>
 			";
 
+			//Get student list
 			$sql_student = "select * from user_course where courseID='$courseID'";
 			$result_student = mysqli_query($conn,$sql_student);
 			$count=1;
@@ -74,8 +83,39 @@
 			</script>
 			";
 
+			//Generate calander based on assignment lsit
+			$sql_ass = "select * from assignment where courseID='$courseID'";
+			$result_ass = mysqli_query($conn,$sql_ass);
+			while($list_ass = mysqli_fetch_assoc($result_ass)){
+				$deadline = $list_ass['endDate'];
+				$assName = $list_ass['assignmentName'];
+
+				//Append calander event
+				echo "
+				<script>
+					myEvents.push({title:'$assName deadline',start:'$deadline'});
+				</script>
+				";
+
+
+			}
+
 
 		}
+
+		//Final script for generate calander
+		echo "
+		<script>
+			$(document).ready(function(){
+				$('#calendar').fullCalendar({
+					editable: true,
+					eventLimit: true,
+					events: myEvents
+				});
+			});
+		</script>
+		";
+
 
 
  ?>

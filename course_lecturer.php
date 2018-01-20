@@ -151,9 +151,7 @@
 										<div class='tableSection studentSection col-sm-10'>
 											<table class='tableTable studentList'>
 												<tr class='t_header'>
-													<th class='t'>
-														#
-													</th>
+
 													<th  class='t'>
 														ID
 													</th>
@@ -167,7 +165,9 @@
 														Contact
 													</th>
 												</tr>
+												<tbody class='studentTableContent'>
 
+												</tbody>
 
 											</table>
 											<br><br><br><br><br><br><br><br><br>

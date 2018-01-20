@@ -1,5 +1,38 @@
 <?php
 
+  //Submit form group function
+  if($_POST['formGroup']){
+
+      $sql= "select * from users where userID = $USERID";
+      $result = mysqli_query($conn, $sql);
+      $list = mysqli_fetch_assoc($result);
+      $name = $list['name'];
+
+      $groupName = $_POST['groupName'];
+      $assID = $_POST['formGroup'];
+      $sql= "INSERT INTO `assignment_group`( `groupName`, `groupLeader`, `groupLeaderID`, `assignmentID`) VALUES ('$groupName','$name','$USERID','$assID')";
+      $result = mysqli_query($conn,$sql);
+      $id = mysqli_insert_id($conn);
+
+      foreach($_POST['checkList'] as $selected){
+        $sql= "INSERT INTO `group_member`( `groupID`, `userID`, `assignmentID`) VALUES ('$id','$selected','$assID')";
+        mysqli_query($conn,$sql);
+      }
+      $sql= "INSERT INTO `group_member`( `groupID`, `userID`, `assignmentID`) VALUES ('$id','$USERID','$assID')";
+      mysqli_query($conn,$sql);
+
+
+      echo "
+        <script>
+          swal('Group created, waiting for approve','','success').then((result) => {
+              location.href='course_student.php';
+          })
+        </script>
+      ";
+  };
+
+
+
   //Grab all the course content , assigment and material
   if($_GET['courseID']){
       $courseID = $_GET['courseID'];
@@ -29,26 +62,53 @@
           <div class='tab-content'>
             <div id='assTab' class='tab-pane fade in active'>";
 
-
-                  $sql_ass = "select * from assignment where courseID = $courseID";
+                  //Get all assignment
+                  $sql_ass = "select * from assignment where courseID = $courseID order by endDate DESC";
                   $result_ass = mysqli_query($conn,$sql_ass);
                   while($list_ass = mysqli_fetch_assoc($result_ass))
                   {
                     $assName = $list_ass['assignmentName'];
                     $assDesc = $list_ass['assignmentDescription'];
                     $assDate = $list_ass['endDate'];
+                    $assType = $list_ass['assignmentType'];
+                    $groupSize = $list_ass['group_size'];
                     $assID = $list_ass['assignmentID'];
+                    $today = date("Y-m-d");
 
+                    //Check assignment type
+                    if($assType == 0)
+                    {
+                      $assType ='Individual';
+                      $action = "
+                        <button class='submitBtn'> Submit </button>
+                      ";
+                    }
+                    else {
+                      $assType ='Group of '.$groupSize;
+                      $action = "
+                        <a href='?formGroup=$assID'><button class='primaryBtn formGroupBtn' value='$assID'>  Form group </button></a>
+                      ";
+                    }
+
+
+
+
+                    //Check deadline
+                    if($assDate < $today){
+                      $action = "
+                        <button class='defaultBtn passedBtn' disabled> Passed </button>
+                      ";
+            				}
 
                     echo"
                     <div class='assList'>
                         <div class='assContent'>
-                          <p class='assName'>$assName</p>
-                          <p class='assDescription'>$assDesc</p>$assDate
+                          <p class='assName'>$assName ($assType)</p>
+                          <p class='assDate'>$assDate</p>
+                          <p class='assDescription'>$assDesc</p>
                         </div>
                         <div class='assAction'>
-                           <button class='submitBtn'> Submit </button>
-                           <button class='kanbanBtn'> Kanban </button>
+                           $action
                         </div>
                     </div>
                     ";
@@ -58,6 +118,7 @@
             <div id='materialTab' class='tab-pane fade'>
               ";
 
+            //Get all material
             $sql_material = "select * from course_material where courseID = $courseID";
             $result_material = mysqli_query($conn,$sql_material);
             while($list_material = mysqli_fetch_assoc($result_material))
@@ -87,7 +148,98 @@
       ";
 
   }
-  else          //Grab all the course list 
+  else if($_GET['formGroup']){   //If form group
+
+      //Switch interface
+      $assID = $_GET['formGroup'];
+      echo"
+        <script>
+          $('.menu').hide();
+          var nameList='';
+
+          $(document).ready(function(){
+              $('.formGroupSection').addClass('overlay');
+              $('.formGroup').val($assID);
+          });
+
+        </script>
+      ";
+
+      //Grab assignment detail
+
+      $sql = "select * from assignment where assignmentID = '$assID'";
+      $result = mysqli_query($conn,$sql);
+      $list_ass = mysqli_fetch_assoc($result);
+
+      //Grab all student from the same course
+      $courseID = $list_ass['courseID'];
+      $groupSize = $list_ass['group_size'];
+      $sql = "select * from user_course where courseID = '$courseID'";
+      $result = mysqli_query($conn,$sql);
+
+      //Change group size emptyLabel
+      echo "<script>
+          $('.groupSize').val($groupSize);
+          $('.groupMemberLabel').html('Select your group member (Max $groupSize)')
+        </script>";
+
+      //Generate name list based on the student from the same course
+      while($list_course = mysqli_fetch_assoc($result)){
+
+          //Get user detail
+          $userID = $list_course['userID'];
+          $sql_user = "select * from users where userID = $userID";
+          $result_user = mysqli_query($conn,$sql_user);
+          $list_user = mysqli_fetch_assoc($result_user);
+          $userName = $list_user['name'];
+          $cardID = $list_user['cardID'];
+
+          if($userID != $USERID)
+          {
+            echo"
+              <script>
+                nameList+=`
+                <br>
+                <div class='checkbox checkbox-info checkbox-circle'>
+                     <input id='check8' value='$userID' name='checkList[]' class='availableCheck checkbox styled' type='checkbox'>
+                     <label for='check8'>
+                         <b> $cardID </b> - $userName
+                     </label>
+                 </div>
+
+                `;
+              </script>
+              ";
+          }
+          else {
+            echo"
+              <script>
+                nameList+=`
+                <br>
+                <div class='checkbox checkbox-info checkbox-circle'>
+                     <input id='check8' value='$userID' name='checkList[]' class='availableCheck checkbox styled' type='checkbox' checked disabled>
+                     <label for='check8'>
+                         <b> $cardID </b>  - $userName  (You)
+                     </label>
+                 </div>
+                `;
+              </script>
+              ";
+
+          }
+
+      }
+
+      //Append name list
+      echo "
+      <script>
+        $('.memberList').append(nameList);
+      </script>
+      ";
+
+
+  }
+  else          //Grab all the course list
   {
 
 

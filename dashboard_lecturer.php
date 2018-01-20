@@ -21,6 +21,10 @@
 		<link href="assets/css/animate.min.css" rel="stylesheet"/>
 		<link href="assets/css/page-css/dashboard.css" rel="stylesheet"/>
 		<link rel="stylesheet" type="text/css" href="assets/css/responsive/dashboard.css" media="screen and (max-width : 768px)">
+		<link href='assets/css/fullcalendar.css' rel='stylesheet' />
+		<link href='assets/css/fullcalendar.print.css' rel='stylesheet' media='print' />
+
+
 
 	</head>
 
@@ -50,8 +54,8 @@
 								<h3> No notification </h3>
 							</div>
 							<div id="calanderTab" class="tab-pane fade">
-								<h3>Calander</h3>
-
+								<br><br>
+  							<div id='calendar'></div>
 							</div>
 							<div id="studentTab" class="tab-pane fade">
 								<select class='courseList form-control'>
@@ -86,8 +90,11 @@
 
 	<!--   JS for this  page
 	<script src="assets/js/bootstrap-notify.js"></script>	 -->
-	<script src="assets/js/page-js/dashboard.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.0.0/sweetalert2.all.js"></script>
+	<script src='assets/js/jquery.min.js'></script>
+	<script src='assets/js/moment.min.js'></script>
+	<script src='assets/js/fullcalendar.js'></script>
+	<script src="assets/js/page-js/dashboard.js"></script>
 
 	<!--php connection-->
 	<?php
