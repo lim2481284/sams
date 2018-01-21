@@ -1,16 +1,14 @@
 /* nanoscrollbar */
 .nano .pane   { background: #888; }
 .nano .slider { background: #111; }
-
-body {
-    /* Override bootstrap properties */
-    background-color: #374a5d !important;
-    border: 0 !important;
+.body{
+  padding:2%;
 }
 
 #container{
     margin: 0 auto;
-    width: 1060px;
+    width: 100vw;
+
     min-height: 100%;
     background-color: transparent;
     border: 0;
@@ -24,30 +22,69 @@ body {
 }
 
 .task-list{
-    width: 250px;
+    width: 280px;
     float: left;
     margin: 0 5px;
-    background-color: #e3e3e3;
-    min-height: 240px;
-    border-radius: 10px;
+    background-color: white;
+    border:1px dotted lightgray;
+    min-height: 80vh;
+    border-radius: 5px;
     padding-bottom: 15px;
+}
+.bg{
+  width:280px;
+  position:fixed;
+  height: 100vh;
+  left:0;
+  background: white;
+  border-right:1px solid lightgray;
+  z-index: -1;
+}
+.addTask{
+  background: transparent;
+  border:none;
+}
+h4{
+  color:gray;
+  font-size: 120%;
+}
+
+h3{
+  color:gray;
+  font-size: 120%;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 25px;
 }
 
 .task-list input, .task-list textarea{
-    width: 240px;
+    width: 220px;
     margin: 1px 5px;
+    margin-top:10px;
 }
+.formBtn{
+  width:220px !important;
+}
+p{
+  font-size: 80%;
+  color:gray;
+}
+form{
 
+  margin-bottom: 0;
+}
 .task-list input{
     height: 30px;
 }
 
 .todo-task{
     border-radius: 5px;
-    background-color: #fff;
-    width: 230px;
+    background-color: transparent;
+    width: 270px;
     margin: 5px;
     padding: 5px;
+    border:1px dotted lightgreen;
+    cursor:pointer;
+
 }
 
 .task-list input[type="button"]{
@@ -76,9 +113,11 @@ h3{
 #delete-div{
     display: none;
     background-color: #fff;
-    border: 3px dotted #000;
+    color:lightgray;
+    border: 4px dotted lightgray;
     margin: 10px;
-    height: 75px;
-    line-height: 75px;
+    height: 120px;
+    line-height: 120px;
+    width:210px;
     text-align: center;
 }

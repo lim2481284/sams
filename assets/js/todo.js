@@ -78,6 +78,7 @@ data = data || {};
                             // Updating Local Storage
                             data[id] = object;
                             localStorage.setItem("todoData", JSON.stringify(data));
+                              console.log(data);
 
                             // Hiding Delete Area
                             $("#" + defaults.deleteDiv).hide();
@@ -186,6 +187,7 @@ data = data || {};
         // Saving element in local storage
         data[id] = tempData;
         localStorage.setItem("todoData", JSON.stringify(data));
+
 
         // Generate Todo Element
         generateElement(tempData);

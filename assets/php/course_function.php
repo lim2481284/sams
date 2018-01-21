@@ -164,6 +164,7 @@
 						<script>
 							groupHTML += `
 											<div class='groupBtn'>
+												<a href='kanban.php?id=$assID'><button class='btn btn-info'>Check kanban</button></a>
 												<button disabled class='btn btn-disabled'>Approved</button>
 											</div>
 									</div>

@@ -76,7 +76,7 @@ $(document).ready(function(){
 
 			//If action is kanban
 			if(action =='kanban'){
-				location.href='kanban.php';
+				location.href='kanban.php?id='+assID;
 			}
 
 	});

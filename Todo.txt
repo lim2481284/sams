@@ -1,1 +1,11 @@
 
+kanban
+  - detect group member
+      - give different color to all member
+      - list all the color and member
+      - store kanban post on change
+        - post type , post title,   post date, post description, post user
+
+  - lecturer view kanban
+    - hide action
+    - remove drag and drop function 
