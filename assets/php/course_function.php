@@ -3,8 +3,468 @@
 <?php
 
 
-		//Edit profile sql
+		//If verify submission is called
+		if(isset($_GET['verifySubmission']))
+		{
+				//Check assignment type
+				$assID = $_GET['verifySubmission'];
+				$sql= "select * from assignment where assignmentID =$assID";
+				$result = mysqli_query($conn,$sql);
+				$list_ass = mysqli_fetch_assoc($result);
+				$assType = $list_ass['assignmentType'];
+
+				//Get all the submission
+				$sql = "select * from assignment_submission where assignmentID = $assID";
+				$result = mysqli_query($conn, $sql);
+				$count =1;
+				while($list_submission = mysqli_fetch_assoc($result)){
+
+						$userID = $list_submission['userID'];
+						$submission = $list_submission['submission_link'];
+						$score = $list_submission['score'];
+						$date = $list_submission['created_at'];
+						if($assType==0){	//if assignment is individual
+
+							//Get user name
+							$sql_user  ="select * from users where userID = $userID";
+							$result_user = mysqli_query($conn,$sql_user);
+							$list_user = mysqli_fetch_assoc($result_user);
+							$userName = $list_user['name'];
+							$cardID = $list_user['cardID'];
+							$NAME = $cardID." - ".$userName;
+
+						}
+						else {	//if assignment is group
+
+							//Get group name
+							$sql_user  ="select * from assignment_group where groupLeaderID = $userID";
+							$result_user = mysqli_query($conn,$sql_user);
+							$list_user = mysqli_fetch_assoc($result_user);
+							$groupName  = $list_user['groupName'];
+							$NAME = "Group - ".$groupName;
+
+						}
+
+						echo "
+						<script>
+							var tableHTML = `
+
+							<tr>
+
+								<td>$count</td>
+								<td>$NAME</td>
+								<td><a download href='assets/img/submission/$submission'>  $submission  </a></td>
+								<td>$date</td>
+								<td>
+									<form class='Form$count' action='' method='post'>
+										<input type='hidden' name='assID' value='$assID'/>
+										<input type='hidden' name='userID' value='$userID'/>
+										<input type='number' value='$score' class='markField' name='mark' />
+									</form>
+								</td>
+								<td><button class='btn btn-info updateMarkBtn' value='$count'>Update mark </button></td>
+
+							</tr>
+
+							`;
+							$('.submissionTable').append(tableHTML);
+						</script>
+						";
+
+						$count++;
+				}
+
+		}
+
+		//If verify group is called
+		if(isset($_GET['verifyGroup']))
+		{
+
+			//Get all group from this assignment
+			$assID = $_GET['verifyGroup'];
+			$sql_group = "select * from assignment_group where assignmentID = $assID";
+			$result_group = mysqli_query($conn,$sql_group);
+			while($list_group= mysqli_fetch_assoc($result_group))
+			{
+
+				//Get this group detail
+				$groupID = $list_group['groupID'];
+				$groupName = $list_group['groupName'];
+				$groupLeader = $list_group['groupLeader'];
+				$groupStatus = $list_group['status'];
+				$groupLeadID = $list_group['groupLeaderID'];
+				$sql ="select * from users where userID = $groupLeadID";
+				$result = mysqli_query($conn, $sql);
+				$list = mysqli_fetch_assoc($result);
+				$name = $list['name'];
+				$cardID = $list['cardID'];
+
+				//Generate group html
+				echo "
+					<script>
+						var groupHTML = `
+								<div class='groupSection'>
+										<div class='groupName'>
+												$groupName
+										</div>
+										<div class='groupList'>
+												<div class='groupLead'>$cardID - $groupLeader </div>
+										</div>
+						`;
+
+					</script>
+				";
+
+				//Get all member from this group
+				$sql_member = "select * from group_member where groupID = $groupID and userID != $groupLeadID ";
+				$result_member = mysqli_query($conn,$sql_member);
+				while($list_member= mysqli_fetch_assoc($result_member))
+				{
+
+					$memberID = $list_member['userID'];
+					$sql ="select * from users where userID = $memberID";
+					$result = mysqli_query($conn, $sql);
+					$list = mysqli_fetch_assoc($result);
+					$name = $list['name'];
+					$cardID = $list['cardID'];
+
+					//Generate member html
+					echo "
+						<script>
+							groupHTML += `
+									<div class='groupList'>
+											<div class='groupMember'>$cardID - $name </div>
+									</div>
+							`;
+						</script>
+					";
+
+				}
+
+				//if not yet approve
+				if($groupStatus==0){
+					//Append html
+					echo "
+						<script>
+							groupHTML += `
+											<div class='groupBtn'>
+												<form action ='' method='post'>
+													<button name='approveGroup' value='$groupID' class='btn btn-success'>Approve</button>
+													<button name='rejectGroup' type='button' value='$groupID' class='rejectGroupBtn btn btn-danger'>Reject</button>
+												</form>
+											</div>
+									</div>
+							`;
+							$('.groupContent').append(groupHTML);
+						</script>
+					";
+				}
+				else if ($groupStatus==1){  //If approved
+					echo "
+						<script>
+							groupHTML += `
+											<div class='groupBtn'>
+												<button disabled class='btn btn-disabled'>Approved</button>
+											</div>
+									</div>
+							`;
+							$('.groupContent').append(groupHTML);
+						</script>
+					";
+
+				}
+				else if ($groupStatus==2){  //If rejected
+					echo "
+						<script>
+							groupHTML += `
+											<div class='groupBtn'>
+													<button disabled class='btn btn-disabled'>Waiting for update</button>
+											</div>
+									</div>
+							`;
+							$('.groupContent').append(groupHTML);
+						</script>
+					";
+
+				}
+
+
+
+			}
+
+			//Get all the no group member
+
+			//Get courseID from this assignemnt
+			$sql= "select * from assignment where assignmentID =$assID";
+			$result = mysqli_query($conn,$sql);
+			$list = mysqli_fetch_assoc($result);
+			$courseID = $list['courseID'];
+
+			//Generate no group html code
+			echo "
+				<script>
+					var groupHTML = `
+							<div class='groupSection'>
+									<div class='groupName'>
+											No group
+									</div>
+					`;
+
+				</script>
+			";
+
+			//Get all student from this course where they no yet have group
+			$sql ="select * from user_course where courseID = $courseID and userID not in (
+					select userID from group_member where assignmentID =$assID
+				)";
+			$result = mysqli_query($conn,$sql);
+			while($list = mysqli_fetch_assoc($result))
+			{
+
+					$memberID = $list['userID'];
+					$sql_user ="select * from users where userID = $memberID";
+					$result_user = mysqli_query($conn, $sql_user);
+					$list_user = mysqli_fetch_assoc($result_user);
+					$name = $list_user['name'];
+					$cardID = $list_user['cardID'];
+
+					//Generate member html
+					echo "
+						<script>
+							groupHTML += `
+									<div class='groupList'>
+											<div class='groupMember'>$cardID - $name </div>
+									</div>
+							`;
+						</script>
+					";
+			}
+
+			//Append html
+			echo "
+				<script>
+					groupHTML += `
+							</div>
+					`;
+					$('.groupContent').append(groupHTML);
+				</script>
+			";
+
+		}
+
+
+
+		//If post request detected
 		if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+
+			//If update submission mark
+			if(isset($_POST['mark']))
+			{
+				//Update mark
+				$mark = $_POST['mark'];
+				$assID =$_POST['assID'];
+				$userID = $_POST['userID'];
+				$sql = "UPDATE `assignment_submission` SET `score`=$mark WHERE assignmentID =$assID and userID =$userID";
+				mysqli_query($conn,$sql);
+
+				///Check assignment Type
+				$sql= "select * from assignment where assignmentID =$assID";
+				$result = mysqli_query($conn,$sql);
+				$list_ass = mysqli_fetch_assoc($result);
+				$assType = $list_ass['assignmentType'];
+
+				if($assType == 0){		//If individual
+
+						//Send notification to that student
+						$sql_user  ="select * from users where userID = $userID";
+						$result_user = mysqli_query($conn,$sql_user);
+						$list_user = mysqli_fetch_assoc($result_user);
+						$userName = $list_user['name'];
+						$cardID = $list_user['cardID'];
+
+						//Get assignment detail
+						$sql ="select * from assignment where assignmentID = $assID";
+						$result = mysqli_query($conn,$sql);
+						$list = mysqli_fetch_assoc($result);
+						$assName = $list['assignmentName'];
+						$courseID = $list['courseID'];
+
+						//Get course detail
+						$sql="select * from course where courseID = $courseID";
+						$result = mysqli_query($conn,$sql);
+						$list = mysqli_fetch_assoc($result);
+						$courseName = $list['courseCode'];
+
+						//Create notification
+						$sql = "INSERT INTO `notification`(`notificationMessage`, `notificationStatus`, `userID`, `notificationParent`) VALUES ('Course $courseName - $assName : Your submission mark is release',0,$userID,$USERID)";
+
+						mysqli_query($conn,$sql);
+
+
+
+				}
+				else {		//If group
+
+
+					//Get assignment detail
+					$sql ="select * from assignment where assignmentID = $assID";
+					$result = mysqli_query($conn,$sql);
+					$list = mysqli_fetch_assoc($result);
+					$assName = $list['assignmentName'];
+					$courseID = $list['courseID'];
+
+					//Get course detail
+					$sql="select * from course where courseID = $courseID";
+					$result = mysqli_query($conn,$sql);
+					$list = mysqli_fetch_assoc($result);
+					$courseName = $list['courseCode'];
+
+					//Get all member from that group
+					$sql ="select * from assignment_group where groupLeaderID = $userID";
+					$result = mysqli_query($conn,$sql);
+					$list = mysqli_fetch_assoc($result);
+					$groupID = $list['groupID'];
+					$sql ="select * from group_member where groupID = $groupID";
+					$result = mysqli_query($conn,$sql);
+					while($list = mysqli_fetch_assoc($result)){
+
+						$studentID = $list['userID'];
+
+						//Get user detail
+						$sql_user  ="select * from users where userID = $studentID";
+						$result_user = mysqli_query($conn,$sql_user);
+						$list_user = mysqli_fetch_assoc($result_user);
+						$userName = $list_user['name'];
+						$cardID = $list_user['cardID'];
+
+						//Create notification
+						$sql = "INSERT INTO `notification`(`notificationMessage`, `notificationStatus`, `userID`, `notificationParent`) VALUES ('Course $courseName - $assName : Your submission mark is release',0,$studentID,$USERID)";
+
+						mysqli_query($conn,$sql);
+
+					}
+
+
+					//Send notification  to everyone in that group
+
+				}
+
+				//Give response
+				echo "
+					<script>
+						swal('Mark updated','','success').then((result) => {
+								 window.location.href = window.location.href;
+						})
+					</script>
+				";
+
+
+			}
+
+
+			//If approve group
+			if(isset($_POST['approveGroup']))
+			{
+
+				//Update group status
+				$groupID = $_POST['approveGroup'];
+				$sql = "update assignment_group set status='1' where groupID= '$groupID' ";
+				mysqli_query($conn,$sql);
+
+
+				//Get course detail
+				$sql ="select assignmentID from assignment_group where  groupID= '$groupID'";
+				$result = mysqli_query($conn,$sql);
+				$list = mysqli_fetch_assoc($result);
+				$assID = $list['assignmentID'];
+
+				$sql ="select * from assignment where assignmentID = $assID";
+				$result = mysqli_query($conn,$sql);
+				$list = mysqli_fetch_assoc($result);
+				$assName = $list['assignmentName'];
+				$courseID = $list['courseID'];
+
+				$sql="select * from course where courseID = $courseID";
+				$result = mysqli_query($conn,$sql);
+				$list = mysqli_fetch_assoc($result);
+				$courseName = $list['courseCode'];
+
+
+				//Get group detail
+				$sql ="select * from group_member where groupID = $groupID";
+				$result = mysqli_query($conn,$sql);
+				while($list = mysqli_fetch_assoc($result)){
+
+					$student = $list['userID'];
+
+					$sql = "INSERT INTO `notification`(`notificationMessage`, `notificationStatus`, `userID`, `notificationParent`) VALUES ('$courseName - $assName : Your group has been approved.',0,$student,$USERID)";
+					mysqli_query($conn,$sql);
+				}
+
+
+				echo "
+					<script>
+						swal('Approved', '' ,'success').then(function (result) {
+									window.location = window.location.href;
+						});
+					</script>
+				";
+
+			}
+
+			//if reject group
+			if(isset($_POST['rejectGroup']))
+			{
+
+				$reason = $_POST['reason'];
+
+				//Update status
+				$groupID = $_POST['rejectGroup'];
+				$sql = "update assignment_group set status='2' where groupID= '$groupID' ";
+				mysqli_query($conn,$sql);
+
+				//Get course detail
+				$sql ="select assignmentID from assignment_group where  groupID= '$groupID'";
+				$result = mysqli_query($conn,$sql);
+				$list = mysqli_fetch_assoc($result);
+				$assID = $list['assignmentID'];
+
+				$sql ="select * from assignment where assignmentID = $assID";
+				$result = mysqli_query($conn,$sql);
+				$list = mysqli_fetch_assoc($result);
+				$assName = $list['assignmentName'];
+				$courseID = $list['courseID'];
+
+				$sql="select * from course where courseID = $courseID";
+				$result = mysqli_query($conn,$sql);
+				$list = mysqli_fetch_assoc($result);
+				$courseName = $list['courseCode'];
+
+
+				//Get group detail
+				$sql ="select * from group_member where groupID = $groupID";
+				$result = mysqli_query($conn,$sql);
+				while($list = mysqli_fetch_assoc($result)){
+
+					$student = $list['userID'];
+
+					$sql = "INSERT INTO `notification`(`notificationMessage`, `notificationStatus`, `userID`, `notificationParent`) VALUES ('$courseName - $assName : Your group has been rejected because of $reason. Please edit your group again. ',0,$student,$USERID)";
+					mysqli_query($conn,$sql);
+				}
+
+
+				echo "
+					<script>
+						swal('Rejected', '' ,'success').then(function (result) {
+									window.location = window.location.href.split('#')[0];
+						});
+					</script>
+				";
+
+
+
+
+			}
 
 
 			//Edit  assignment function
@@ -48,6 +508,25 @@
 				$deadline = $_POST['deadline'];
 				$sql="insert into assignment (`courseID`,`group_size`,`assignmentType`,`assignmentName`,`assignmentDescription`,`endDate`,`score`) values ('$courseID',$groupSize,'$assType', '$name', '$description', '$deadline','$score')";
 				if(mysqli_query($conn,$sql)){
+
+					//Get course detail
+					$sql_course = "select * from course where courseID = $courseID ";
+					$result_course = mysqli_query($conn, $sql_course);
+					$list_course = mysqli_fetch_assoc($result_course);
+					$courseCode = $list_course['courseCode'];
+
+					//Get current user from this course
+					$sql_course_user = "select * from user_course where courseID = ' $courseID'";
+					$result_course_user  = mysqli_query($conn, $sql_course_user);
+					while($list_course_user  = mysqli_fetch_assoc($result_course_user)){
+
+						$student = $list_course_user['userID'];
+
+						//Create notification for all student
+						$sql_noti =  "INSERT INTO `notification`(`notificationMessage`, `notificationStatus`, `userID`, `notificationParent`) VALUES ('Course $courseCode have new assignment',0,$student,$USERID)";
+						mysqli_query($conn,$sql_noti);
+
+					}
 
 					echo"
 						<script>
@@ -110,7 +589,7 @@
 				}
 			}
 
-			//Upload file function
+			//Upload material file function
 			if(isset($_POST['file']))
 			{
 				$courseID = $_POST['courseID'];
@@ -123,6 +602,26 @@
 					$sql="insert into course_material (`courseID`,`material_link`) values ('$courseID', '$name')";
 					if(mysqli_query($conn,$sql))
 					{
+
+						//Get course detail
+						$sql_course = "select * from course where courseID = $courseID ";
+						$result_course = mysqli_query($conn, $sql_course);
+						$list_course = mysqli_fetch_assoc($result_course);
+						$courseCode = $list_course['courseCode'];
+
+						//Get current user from this course
+						$sql_course_user = "select * from user_course where courseID = ' $courseID'";
+						$result_course_user  = mysqli_query($conn, $sql_course_user);
+						while($list_course_user  = mysqli_fetch_assoc($result_course_user)){
+
+							$student = $list_course_user['userID'];
+
+							//Create notification for all student
+							$sql_noti =  "INSERT INTO `notification`(`notificationMessage`, `notificationStatus`, `userID`, `notificationParent`) VALUES ('Course $courseCode have upload new material',0,$student,$USERID)";
+							mysqli_query($conn,$sql_noti);
+
+						}
+
 						echo"
 						<script>
 							swal({
@@ -291,12 +790,13 @@
 				$courseID = $row['courseID'];
 				$type = $row['assignmentType'];
 				$size = $row['group_size'];
-				$today = date("Y-m-d");   
+				$today = date("Y-m-d");
 
 				if($type==1)
 				{
 					$type ="Group ($size)";
 					$option ="
+						<input type='hidden' class='assignmentID' value='$assignmentID'/>
 						<select class='form-control actionList'>
 							<option  selected>Choose action... </option>
 							<option value='deleteAssBtn'> Delete assignment </option>

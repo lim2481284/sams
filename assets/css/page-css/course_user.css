@@ -1,9 +1,110 @@
+.fileSection{
+	position:relative;
+
+}
+.addFile{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+
+.file-input-wrapper {
+	margin:auto;
+	width: 200px;
+	height: 50%;
+	overflow: hidden;
+	position: relative;
+}
+.file-input-wrapper > input[type="file"] {
+	font-size: 200px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	opacity: 0;
+  cursor: pointer;
+}
+.file-input-wrapper > .btn-file-input {
+	display: inline-block;
+	width: 200px;
+	height: 40px;
+    background: #3DBAD9;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.profileFileUpload{
+	cursor:pointer;
+}
+
+#uploadedImage{
+	max-height:400px;
+	max-width:400px;
+}
+
+.imageSection{
+	margin-bottom:10%;
+	margin-top:10%;
+	text-align:center;
+}
+
+
+
 .emptyLabel{
   font-size:150%;
   text-align: center;
   color:lightgray;
 
 }
+.uploadSection{
+  opacity: 0;
+  display: none;
+  transition: 0.5s all;
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+}
+.uploadCover{
+  display: block;
+    opacity: 1;
+}
+.fileSection{
+  width:300px;
+  height:300px;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  position: absolute;
+  margin:auto;
+}
+
+.uploadBox{
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  position: absolute;
+  margin:auto;
+  width:50vw;
+  height: 80vh;
+  background: white;
+}
+
+.uploadButtonSection{
+  width:140px;
+  position:absolute;
+  bottom: 100;
+  left:0;
+  right:0;
+
+  margin:auto;
+}
+
 .checkbox{
   outline:none;
 }
@@ -92,6 +193,17 @@ body{
   transition:1s all;
   outline:none;
 }
+select{
+  float:right;
+  position:relative;
+  padding:5px;
+  color:gray;
+  cursor:pointer;
+  margin-top:40px;
+  transition:1s all;
+  outline:none;
+}
+
 .kanbanBtn,
 .defaultBtn,
 .submitBtn,

@@ -46,7 +46,7 @@
 
 
 						//Create notification for lecturer
-						$sql = "INSERT INTO `notification`(`notificationMessage`, `notificationStatus`, `userID`, `notificationParent`) VALUES ('$name has enroll subject $course ',0,$lecturer,$USERID)";
+						$sql = "INSERT INTO `notification`(`notificationMessage`, `notificationStatus`, `userID`, `notificationParent`) VALUES ('$name have enroll subject $course ',0,$lecturer,$USERID)";
 					 	mysqli_query($conn,$sql);
 
 					}

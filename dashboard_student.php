@@ -18,8 +18,7 @@
     </ul>
 
     <div class="tab-content">
-      <div id="notification" class="tab-pane fade in active notiBody">
-        <p class='notificationContent'>No notification.</p>
+      <div id="notification" class="tab-pane fade in active notificationList">
       </div>
       <div id="ass" class="tab-pane fade assBody">
         <div class="panel-group" id="accordion">

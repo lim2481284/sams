@@ -2,6 +2,28 @@
 
 <?php
 
+		//Get all notification
+		$sql = "select * from notification where userID='$USERID' order by created_at DESC";
+		$result = mysqli_query($conn,$sql);
+
+		while($list = mysqli_fetch_assoc($result)){
+				$message = $list['notificationMessage'];
+				$createDate = $list['created_at'];
+				echo "
+				<script>
+					$('.notificationList').append(`
+						<div class='notification col-sm-12'>
+								<div class='col-sm-10 notificationContent'>$message</div>
+								<div class='col-sm-2 notificationDate'>$createDate</div>
+						</div>
+					`);
+				</script>
+				";
+
+		}
+
+
+
     //Get all the current user course
 		$sql = "select * from course where userID='$USERID'";
 		$result = mysqli_query($conn,$sql);

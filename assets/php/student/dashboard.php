@@ -1,6 +1,28 @@
 <?php
 	session_start();
 
+
+	//Get all notification
+	$sql = "select * from notification where userID='$USERID' order by created_at DESC";
+	$result = mysqli_query($conn,$sql);
+
+	while($list = mysqli_fetch_assoc($result)){
+			$message = $list['notificationMessage'];
+			$createDate = $list['created_at'];
+			echo "
+			<script>
+				$('.notificationList').append(`
+					<div class='notification col-sm-12'>
+							<div class='col-sm-10 notiContent'>$message</div>
+							<div class='col-sm-2 notificationDate'>$createDate</div>
+					</div>
+				`);
+			</script>
+			";
+
+	}
+
+
 	//Declaration for Generate calander event list
 	echo "
 	<script>
@@ -96,11 +118,12 @@
 						<div class='panel-body'>
 									<div class='assList'>
 											<div class='assContent'>
-												<p class='assName'>$assName</p>
-												<p class='assDescription'>$assDesc</p>$assDate
+												<p class='assName'>$assName ($assType)</p>
+												<p class='assDate'>$assDate</p>
+												<p class='assDescription'>$assDesc</p>
 											</div>
 											<div class='assAction'>
-												 <button class='submitBtn'> Submit </button>
+												 <a href='course_student.php?courseID=$courseID'><button class='viewBtn submitBtn'> View </button></a>
 											</div>
 									</div>
 								</div>

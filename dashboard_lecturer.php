@@ -51,7 +51,9 @@
 
 						<div class="tab-content">
 							<div id="notificationTab" class="tab-pane fade in active">
-								<h3> No notification </h3>
+								<div class='notificationList'>
+										
+								</div>
 							</div>
 							<div id="calanderTab" class="tab-pane fade">
 								<br><br>

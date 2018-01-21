@@ -67,7 +67,6 @@ $(document).ready(function(){
 					}).then((result) => {
 						if(result.dismiss!='cancel')
 							$(this).parent().submit();
-
 					})
 			}
 
@@ -75,13 +74,15 @@ $(document).ready(function(){
 			//If Verify group
 			if(value =='verifyGroupBtn')
 			{
-
+					var assID = $(this).parent().find('.assignmentID').attr('value');
+					location.href='?verifyGroup='+assID;
 			}
 
 			//If Verify submission
 			if(value =='verifySubBtn')
 			{
-
+				var assID = $(this).parent().find('.assignmentID').attr('value');
+				location.href='?verifySubmission='+assID;
 			}
 
 			//If kanban
@@ -92,6 +93,42 @@ $(document).ready(function(){
 
 
 	});
+
+
+
+	//Onclick update mark
+	$(document).on('click','.updateMarkBtn',function(){
+		var form = $(this).val();
+		$('.Form'+form).submit();
+
+	});
+
+	//Reject group function
+	$(document).on('click','.rejectGroupBtn',function(){
+			var groupID = $(this).val();
+			swal({
+			  title: 'Reject group',
+			  allowOutsideClick: false,
+			  showCancelButton: true,
+			  html:`
+			  <form id="myForm" action="#" method="post" >
+				<br>
+				<label class="swal-label">Reason to reject  </label>
+				<input id="swal-input-code" name="reason" class="swal2-input"  value="" required>
+				<input type='hidden' name="rejectGroup"  value="`+groupID+`" >
+			  </form>`,
+			  focusConfirm: false
+			}).then(function (result) {
+				  if (result.dismiss === 'cancel') {}
+				  else
+				  {
+							document.getElementById("myForm").submit();
+				  }
+
+			}).catch(swal.noop)
+
+	});
+
 
 	//Add assignemnt button function
 	$('.addAssignment').click(function(){
@@ -242,14 +279,23 @@ $(document).ready(function(){
 
 	//If paramter courseID is found, then display course content section, else display create course section
 	var courseID = getUrlParameter('courseID');
+	var group = getUrlParameter('verifyGroup');
+	var submit = getUrlParameter('verifySubmission');
 	if(courseID)
 	{
 		$('.displayCourseSection').show();
 	}
-	else
+	else if (group)
 	{
-		$('.createCourseSection').show();
+			$('.displayGroupSection').show();
 	}
+	else if(submit){
+
+		$('.displaySubmissionSection').show();
+	}
+	else
+		$('.createCourseSection').show();
+
 
 });
 

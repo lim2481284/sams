@@ -60,6 +60,66 @@
 
 				</div>
 
+
+				<!-- Main content for display verify group section  -->
+				<div class="content displayGroupSection ">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="content groupContent all-icons">
+
+										<input class='courseKey' type='hidden'/>
+										<a href="javascript: history.go(-1)"> <button class='btn btn-default leftBtn '>Back  </button></a>
+										<br><br><br>
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+
+				<!-- Main content for display verify submission section  -->
+				<div class="content displaySubmissionSection ">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="card">
+									<div class="content submissionContent all-icons">
+										<a href="javascript: history.go(-1)"> <button class='btn btn-default leftBtn '>Back  </button></a>
+										<br><br><br>
+
+										<div class="table-responsive">
+										 <table class="table">
+											 <thead>
+												 <tr>
+													 <th>#</th>
+													 <th>From </th>
+													 <th>Submission</th>
+												  	<th>Date</th>
+													 <th>Mark</th>
+													 <th>Action</th>
+												 </tr>
+											 </thead>
+											 <tbody class='submissionTable'>
+												 
+											 </tbody>
+										 </table>
+										 </div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+
 				<!-- Main content for display course section  -->
 				<div class="content displayCourseSection">
 					<div class="container-fluid">
